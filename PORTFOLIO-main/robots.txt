@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://Linda Boukhris.online/sitemap.xml

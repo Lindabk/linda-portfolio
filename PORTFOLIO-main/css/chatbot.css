@@ -1,0 +1,429 @@
+/* =========================================
+   PROFESSIONAL NEON CHATBOT STYLES (FIXED)
+   ========================================= */
+
+:root {
+    /* Fallback colors in case main variables fail */
+    --chat-bg-solid: #0a0e1e;
+    --chat-accent: #ff2a85;
+    --chat-accent-2: #b100ff;
+}
+
+/* --- Container & Toggle Button --- */
+#chat-widget {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 10000;
+    /* Maximum z-index to stay on top */
+    font-family: 'Inter', sans-serif;
+}
+
+#chat-toggle-btn {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #f06292, #e91e63);
+    /* Hardcoded gradient */
+    border: none;
+    color: white;
+    cursor: pointer;
+    box-shadow: 0 0 20px rgba(233, 30, 99, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    animation: pulse-neon 3s infinite;
+}
+
+#chat-toggle-btn:hover {
+    transform: scale(1.1) rotate(5deg);
+    box-shadow: 0 0 30px rgba(233, 30, 99, 0.6);
+}
+
+@keyframes pulse-neon {
+    0% {
+        box-shadow: 0 0 0 0 rgba(233, 30, 99, 0.4);
+    }
+
+    70% {
+        box-shadow: 0 0 0 15px rgba(233, 30, 99, 0);
+    }
+
+    100% {
+        box-shadow: 0 0 0 0 rgba(233, 30, 99, 0);
+    }
+}
+
+/* --- The Chat Window (Fixed Overflow) --- */
+.chat-window {
+    position: absolute;
+    bottom: 80px;
+    /* Sits above the button */
+    right: 0;
+
+    /* SIZE CONSTRAINTS (The Fix) */
+    width: 350px;
+    height: 500px;
+    /* Target height */
+    max-height: 70vh;
+    /* CRITICAL: Never taller than 70% of screen */
+    max-width: 90vw;
+    /* CRITICAL: Never wider than 90% of mobile screen */
+
+    background: rgba(10, 14, 30, 0.95);
+    /* Dark solid tint */
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+
+    border: 1px solid rgba(233, 30, 99, 0.3);
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
+
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+
+    /* Animation State */
+    transform-origin: bottom right;
+    transform: scale(0.9) translateY(20px);
+    opacity: 0;
+    pointer-events: none;
+    /* Click-through when hidden */
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.chat-window.open {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+    pointer-events: all;
+}
+
+/* --- PROFESSIONAL HEADER DESIGN --- */
+.chat-header {
+    /* Gradient Background */
+    background: linear-gradient(135deg, #0a0e27 0%, #1a1f3c 100%);
+    padding: 16px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    flex-shrink: 0;
+}
+
+/* Profile Container */
+.chat-profile {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+/* Avatar Wrapper */
+.avatar-wrapper {
+    position: relative;
+    width: 45px;
+    height: 45px;
+}
+
+.bot-avatar {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 2px solid #f06292;
+    /* Neon Cyan Border */
+    box-shadow: 0 0 15px rgba(233, 30, 99, 0.3);
+}
+
+/* Online Dot */
+.status-indicator-dot {
+    position: absolute;
+    bottom: 2px;
+    right: 2px;
+    width: 10px;
+    height: 10px;
+    background-color: #00ff00;
+    border: 2px solid #0a0e27;
+    /* Matches header bg to cut shape */
+    border-radius: 50%;
+    box-shadow: 0 0 0 2px rgba(0, 255, 0, 0.2);
+    animation: online-pulse 2s infinite;
+}
+
+@keyframes online-pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(0, 255, 0, 0.7);
+    }
+
+    70% {
+        box-shadow: 0 0 0 6px rgba(0, 255, 0, 0);
+    }
+
+    100% {
+        box-shadow: 0 0 0 0 rgba(0, 255, 0, 0);
+    }
+}
+
+/* Text Info */
+.bot-info {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.2;
+}
+
+.bot-name {
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 1rem;
+    letter-spacing: 0.5px;
+}
+
+.bot-status {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.75rem;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+#close-chat {
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+    line-height: 1;
+    padding: 0 5px;
+}
+
+/* --- Messages Area (Fixed Visibility) --- */
+.chat-messages {
+    flex: 1;
+    /* Takes all available space */
+    padding: 20px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    background: transparent;
+}
+
+/* Scrollbar Styling */
+.chat-messages::-webkit-scrollbar {
+    width: 5px;
+}
+
+.chat-messages::-webkit-scrollbar-thumb {
+    background: rgba(233, 30, 99, 0.3);
+    border-radius: 10px;
+}
+
+/* Message Bubbles */
+.message {
+    padding: 10px 15px;
+    border-radius: 12px;
+    max-width: 85%;
+    font-size: 0.9rem;
+    line-height: 1.4;
+    word-wrap: break-word;
+    /* Prevents long words breaking layout */
+    animation: slideUp 0.3s ease forwards;
+
+    /* Text Visibility Fix */
+    color: #ffffff !important;
+    text-shadow: none !important;
+}
+
+.message.bot {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    align-self: flex-start;
+    border-bottom-left-radius: 2px;
+}
+
+.message.user {
+    /* Neon Gradient Background for User */
+    background: linear-gradient(135deg, #f06292 0%, #ff6699 100%);
+    align-self: flex-end;
+    border-bottom-right-radius: 2px;
+    color: #000000 !important;
+    /* Dark text on bright neon for contrast */
+    font-weight: 600;
+}
+
+/* --- Input Area (Fixed Typing Visibility) --- */
+.chat-input-area {
+    padding: 15px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(0, 0, 0, 0.3);
+    display: flex;
+    gap: 10px;
+    flex-shrink: 0;
+    /* Prevents shrinking */
+}
+
+#chat-input {
+    flex: 1;
+    padding: 12px 15px;
+    border-radius: 25px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+
+    /* VISIBILITY FIX: Dark background, White text */
+    background: #0a0e1e !important;
+    color: #ffffff !important;
+
+    outline: none;
+    font-size: 0.95rem;
+}
+
+#chat-input::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+#send-btn {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: transparent;
+    border: 1px solid rgba(233, 30, 99, 0.3);
+    color: #f06292;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s;
+}
+
+#send-btn:hover {
+    background: var(--gradient-1);
+    border-color: transparent;
+    color: white;
+    transform: scale(1.05) rotate(-10deg);
+    box-shadow: 0 0 20px rgba(233, 30, 99, 0.2);
+}
+
+/* --- ANIMATIONS --- */
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* --- 1. Typing Indicator Animation (The Bubbles) --- */
+.message.typing {
+    padding: 15px 20px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    min-width: 80px;
+    background: rgba(255, 255, 255, 0.05);
+    /* Subtle background */
+    border-radius: 15px;
+    border-bottom-left-radius: 2px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    margin-bottom: 10px;
+}
+
+/* Force hide when JS adds 'hidden' class */
+.message.typing.hidden {
+    display: none !important;
+    visibility: hidden !important;
+    height: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    border: none !important;
+}
+
+.typing-dot {
+    width: 8px;
+    height: 8px;
+    background: #f06292;
+    /* Neon Cyan */
+    border-radius: 50%;
+    animation: typing-bounce 1.4s infinite both;
+    box-shadow: 0 0 5px rgba(233, 30, 99, 0.5);
+}
+
+.typing-dot:nth-child(1) {
+    animation-delay: -0.32s;
+}
+
+.typing-dot:nth-child(2) {
+    animation-delay: -0.16s;
+}
+
+.typing-dot:nth-child(3) {
+    animation-delay: 0s;
+}
+
+@keyframes typing-bounce {
+
+    0%,
+    80%,
+    100% {
+        transform: scale(0);
+        opacity: 0.5;
+    }
+
+    40% {
+        transform: scale(1);
+        opacity: 1;
+        box-shadow: 0 0 10px #f06292;
+    }
+}
+
+/* --- 2. Highlighted Links Styling --- */
+.message.bot a {
+    color: #f06292 !important;
+    /* Force Neon Cyan */
+    text-decoration: none;
+    font-weight: 700;
+    border-bottom: 1px dotted rgba(233, 30, 99, 0.8);
+    transition: all 0.2s ease;
+    pointer-events: auto;
+    /* Ensure they are clickable */
+    position: relative;
+    z-index: 10;
+}
+
+.message.bot a:hover {
+    color: #ffffff !important;
+    background: rgba(233, 30, 99, 0.2);
+    border-radius: 4px;
+    text-shadow: 0 0 8px rgba(233, 30, 99, 0.8);
+    border-bottom: 1px solid #f06292;
+}
+
+/* List Items formatting */
+.chat-list-item {
+    margin-top: 4px;
+    padding-left: 8px;
+    display: block;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+/* --- MOBILE RESPONSIVE FIX --- */
+@media (max-width: 480px) {
+    #chat-widget {
+        bottom: 15px;
+        right: 15px;
+    }
+
+    .chat-window {
+        width: calc(100vw - 40px);
+        /* Full width minus padding */
+        right: 0;
+        bottom: 75px;
+        /* Just above the button */
+        height: 60vh;
+        /* Use 60% of screen height */
+    }
+}

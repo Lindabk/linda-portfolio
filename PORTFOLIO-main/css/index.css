@@ -1,0 +1,4357 @@
+/* --- PRELOADER STYLES --- */
+#preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--darker);
+    /* Deep blue background */
+    z-index: 99999;
+    /* Sits on top of everything */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.8s ease-out, visibility 0.8s ease-out;
+}
+
+.loader-content {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.loader-logo {
+    font-size: 2.5rem;
+    font-weight: 900;
+    background: var(--gradient-1);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    opacity: 0;
+    animation: logoFadeIn 1s ease forwards;
+}
+
+.loader-bar {
+    width: 150px;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+}
+
+.loader-progress {
+    width: 0%;
+    height: 100%;
+    background: var(--gradient-1);
+    border-radius: 10px;
+    animation: progressFill 1.5s ease-in-out forwards;
+    box-shadow: 0 0 10px var(--primary);
+}
+
+/* Hide Scrollbar while loading */
+body.loading {
+    overflow: hidden !important;
+}
+
+/* Animations */
+@keyframes logoFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes progressFill {
+    0% {
+        width: 0%;
+    }
+
+    50% {
+        width: 70%;
+    }
+
+    100% {
+        width: 100%;
+    }
+}
+
+/* --- FADE OUT CLASS --- */
+#preloader.hide {
+    opacity: 0;
+    visibility: hidden;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary: #ff2a85;
+    --secondary: #7209b7;
+    --accent: #b100ff;
+    --dark: #0a0f1c;
+    --darker: #050814;
+    --light: #ffffff;
+    --gray: #a0aec0;
+    --card-bg: rgba(10, 15, 28, 0.7);
+    --gradient-1: linear-gradient(135deg, #ff2a85 0%, #7209b7 100%);
+    --gradient-2: linear-gradient(135deg, #7209b7 0%, #b100ff 100%);
+}
+
+html {
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+    height: auto;
+    overflow-x: hidden;
+    /* Only hide X on HTML */
+    overflow-y: scroll;
+    /* Force Y scrollbar to avoid layout jumping */
+
+    /* 2. Modern Smooth Scroll */
+    scroll-behavior: smooth;
+
+    /* 3. Prevent "Bouncing" that locks scroll on iOS */
+    overscroll-behavior-y: none;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: var(--darker);
+    color: var(--light);
+    line-height: 1.6;
+    overflow-x: hidden;
+    position: relative;
+    scroll-margin-top: 110px;
+    /* Global offset for fixed header */
+    /* 4. Ensure Body grows with content */
+    min-height: 100vh;
+    width: 100%;
+    overflow-x: hidden;
+    /* Double safety */
+    -webkit-overflow-scrolling: touch;
+}
+
+/* Animated Background */
+.bg-animation {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background: var(--darker);
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.bg-animation::before {
+    content: '';
+    position: absolute;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle at 50% 50%, rgba(233, 30, 99, 0.1) 0%, transparent 50%);
+    animation: pulse 15s ease-in-out infinite;
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 0.5;
+    }
+
+    50% {
+        transform: translate(-50%, -50%) scale(1.5);
+        opacity: 0.8;
+    }
+}
+
+.floating-shapes {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    overflow: hidden;
+}
+
+.shape {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(60px);
+    opacity: 0.3;
+    animation: float 20s infinite ease-in-out;
+}
+
+.shape-1 {
+    width: 400px;
+    height: 400px;
+    background: var(--gradient-1);
+    top: 10%;
+    left: -10%;
+    animation-delay: 0s;
+}
+
+.shape-2 {
+    width: 300px;
+    height: 300px;
+    background: var(--gradient-2);
+    top: 60%;
+    right: -10%;
+    animation-delay: 5s;
+}
+
+.shape-3 {
+    width: 250px;
+    height: 250px;
+    background: var(--accent);
+    bottom: 10%;
+    left: 50%;
+    animation-delay: 10s;
+}
+
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translate(0, 0) rotate(0deg);
+    }
+
+    25% {
+        transform: translate(100px, -100px) rotate(90deg);
+    }
+
+    50% {
+        transform: translate(200px, 50px) rotate(180deg);
+    }
+
+    75% {
+        transform: translate(-50px, 100px) rotate(270deg);
+    }
+}
+
+/* Header */
+header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    padding: 1.5rem 0;
+    background: rgba(6, 8, 24, 0.8);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    transition: all 0.3s ease;
+}
+
+header.scrolled {
+    padding: 1rem 0;
+    background: rgba(6, 8, 24, 0.95);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+nav {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 1.8rem;
+    font-weight: 800;
+    background: var(--gradient-1);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    text-decoration: none;
+}
+
+.logo:hover {
+    transform: scale(1.05);
+}
+
+.nav-links {
+    display: flex;
+    gap: 3rem;
+    list-style: none;
+    align-items: center;
+}
+
+.nav-links a {
+    color: var(--gray);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.95rem;
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--gradient-1);
+    transition: width 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: var(--primary);
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+}
+
+.nav-cta {
+    padding: 0.8rem 2rem;
+    background: var(--gradient-1);
+    border: none;
+    border-radius: 50px;
+    color: var(--dark);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.nav-cta::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: var(--gradient-2);
+    transition: left 0.3s ease;
+    z-index: -1;
+}
+
+.nav-cta:hover::before {
+    left: 0;
+}
+
+.nav-cta:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(233, 30, 99, 0.3);
+}
+
+.mobile-menu {
+    display: none;
+    flex-direction: column;
+    gap: 6px;
+    cursor: pointer;
+    z-index: 1001;
+}
+
+.mobile-menu span {
+    width: 30px;
+    height: 3px;
+    background: var(--primary);
+    border-radius: 3px;
+    transition: all 0.3s ease;
+}
+
+.mobile-menu.active span:nth-child(1) {
+    transform: rotate(45deg) translate(8px, 8px);
+}
+
+.mobile-menu.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.mobile-menu.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(8px, -8px);
+}
+
+/* Hero Section */
+.hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8rem 3rem 4rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-content {
+    max-width: 1400px;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+    opacity: 0;
+    /* Start invisible */
+    animation: none;
+    /* Do not animate yet */
+
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.hero-text h1 {
+    font-size: 4.5rem;
+    font-weight: 900;
+    line-height: 1.1;
+    margin-bottom: 1rem;
+    background: var(--gradient-1);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    opacity: 0;
+    /* Start invisible */
+    animation: none;
+    /* Do not animate yet */
+}
+
+.hero-text .subtitle {
+    font-size: 1.8rem;
+    color: var(--primary);
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+    /* 1. Reserve height for 2 lines of text (prevents jumping up) */
+    min-height: 3.6rem;
+
+    /* 2. Align text vertically so single lines sit in the middle (optional) */
+    display: flex;
+    align-items: center;
+
+    /* 3. Default alignment for Desktop */
+    justify-content: flex-start;
+    opacity: 0;
+    /* Start invisible */
+    animation: none;
+    /* Do not animate yet */
+}
+
+/* --- TYPING EFFECT CSS --- */
+.cursor {
+    display: inline-block;
+    margin-left: 2px;
+    color: var(--primary);
+    animation: blink 1s infinite;
+
+    /* --- CONTROLS FOR CURSOR SIZE --- */
+    font-weight: 200;
+    /* Makes it thin (like a real cursor) */
+    font-size: 2.5rem;
+    /* Increases the height/length */
+    line-height: 1;
+    /* Prevents it from messing up spacing */
+    vertical-align: sub;
+    /* Moves it down slightly to align with text */
+    transform: translateY(-5px);
+}
+
+/* =========================================
+   MILLION DOLLAR HERO TYPING EFFECT (V2 ULTRA-PREMIUM)
+   ========================================= */
+
+.premium-subtitle-wrapper {
+    display: inline-flex;
+    align-items: center;
+    gap: 18px;
+    background: rgba(13, 17, 30, 0.85);
+    /* Deep, rich dark blue */
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    /* Subtle glass rim */
+    border-bottom: 2px solid #e91e63;
+    /* Strong neon anchor line */
+    padding: 12px 24px 12px 24px;
+    /* Snug on left, breathable on right */
+    border-radius: 100px;
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+
+    /* Complex Shadow: Deep drop shadow + Ambient cyan glow + Glass top highlight */
+    box-shadow:
+        0 20px 40px -10px rgba(0, 0, 0, 0.7),
+        0 10px 30px rgba(233, 30, 99, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+/* The Solid, Vibrant Badge */
+.tech-badge-inline {
+    background: linear-gradient(135deg, #e91e63, #ff2a85);
+    /* Vivid pink gradient */
+    color: #020617;
+    /* Very dark text for extreme contrast */
+    padding: 8px 18px;
+    border-radius: 50px;
+    font-size: 0.8rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    border: none;
+    box-shadow: 0 4px 15px rgba(233, 30, 99, 0.4);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* Live Pulse Dot inside the badge */
+.tech-badge-inline::before {
+    content: '';
+    display: block;
+    width: 6px;
+    height: 6px;
+    background: #ffffff;
+    border-radius: 50%;
+    box-shadow: 0 0 8px #fff;
+    animation: pulseLiveDot 2s infinite;
+}
+
+@keyframes pulseLiveDot {
+    0% {
+        transform: scale(0.95);
+        opacity: 1;
+    }
+
+    50% {
+        transform: scale(1.5);
+        opacity: 0.5;
+        box-shadow: 0 0 15px #fff;
+    }
+
+    100% {
+        transform: scale(0.95);
+        opacity: 1;
+    }
+}
+
+/* The Typing Text */
+/* The Typing Text */
+.premium-subtitle-wrapper .subtitle {
+    margin: 0;
+    font-family: 'Consolas', 'Fira Code', 'Courier New', monospace;
+    font-size: 1.25rem;
+    color: #f8fafc;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+    /* PREVENTS UGLY MULTI-LINE WRAPPING */
+}
+
+#premium-typing-text {
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+}
+
+/* The True Neon Cursor */
+.premium-cursor {
+    display: inline-block;
+    width: 10px;
+    height: 1.3rem;
+    background-color: #e91e63;
+    margin-left: 8px;
+    border-radius: 2px;
+    box-shadow: 0 0 10px #e91e63, 0 0 20px #e91e63;
+    /* Double layer glow */
+    animation: premiumBlink 1s step-end infinite;
+}
+
+@keyframes premiumBlink {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0;
+    }
+}
+
+@keyframes blink {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0;
+    }
+}
+
+.hero-text p {
+    font-size: 1.2rem;
+    color: var(--gray);
+    margin-bottom: 2.5rem;
+    line-height: 1.8;
+    opacity: 0;
+    /* Start invisible */
+    animation: none;
+    /* Do not animate yet */
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    opacity: 0;
+    /* Start invisible */
+    animation: none;
+    /* Do not animate yet */
+}
+
+.btn {
+    padding: 1rem 2.5rem;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: none;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-primary {
+    background: var(--gradient-1);
+    color: var(--dark);
+}
+
+.btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 40px rgba(233, 30, 99, 0.4);
+}
+
+.btn-secondary {
+    background: transparent;
+    color: var(--light);
+    border: 2px solid var(--primary);
+}
+
+.btn-secondary:hover {
+    background: rgba(233, 30, 99, 0.1);
+    transform: translateY(-3px);
+    box-shadow: 0 15px 40px rgba(233, 30, 99, 0.2);
+}
+
+.hero-visual {
+    position: relative;
+    opacity: 0;
+    /* Start invisible */
+    animation: none;
+    /* Do not animate yet */
+}
+
+/* When JS adds .animate-hero, these animations fire */
+.hero.animate-hero .hero-content {
+    animation: fadeInUp 1s ease forwards;
+}
+
+.hero.animate-hero .hero-text h1 {
+    animation: fadeInUp 1s ease 0.2s forwards;
+}
+
+.hero.animate-hero .hero-text .subtitle {
+    animation: fadeInUp 1s ease 0.4s forwards;
+}
+
+.hero.animate-hero .hero-text p {
+    animation: fadeInUp 1s ease 0.6s forwards;
+}
+
+.hero.animate-hero .hero-buttons {
+    animation: fadeInUp 1s ease 0.8s forwards;
+}
+
+.hero.animate-hero .hero-visual {
+    animation: fadeInUp 1s ease 0.4s forwards;
+}
+
+.hero-image-container {
+    position: relative;
+    width: 100%;
+    height: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.floating-card {
+    position: absolute;
+    background: var(--card-bg);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 2.5rem;
+    align-items: center !important;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+
+.floating-card:hover {
+    background: rgba(233, 30, 99, 0.1);
+    box-shadow: 0 20px 60px rgba(233, 30, 99, 0.2);
+}
+
+@keyframes floatCard-1 {
+
+    0%,
+    100% {
+        transform: translateY(0) rotate(0deg) scale(1.1);
+    }
+
+    50% {
+        transform: translateY(-20px) rotate(2deg) scale(1.1);
+    }
+}
+
+@keyframes floatCard-2 {
+
+    0%,
+    100% {
+        transform: translateY(0) rotate(0deg) scale(0.9);
+    }
+
+    50% {
+        transform: translateY(-15px) rotate(-1deg) scale(0.9);
+    }
+}
+
+@keyframes floatCard-3 {
+
+    0%,
+    100% {
+        transform: translateY(0) rotate(0deg) scale(1.2);
+    }
+
+    50% {
+        transform: translateY(-25px) rotate(1deg) scale(1.2);
+    }
+}
+
+@keyframes floatCard-4 {
+
+    0%,
+    100% {
+        transform: translateY(0) rotate(0deg) scale(0.8);
+    }
+
+    50% {
+        transform: translateY(-10px) rotate(-2deg) scale(0.8);
+    }
+}
+
+.card-1 {
+    top: 35%;
+    left: 15%;
+    right: auto;
+    transform: scale(1.1);
+    bottom: auto;
+    animation: floatCard-1 6s ease-in-out infinite;
+    animation-delay: 0s;
+}
+
+.card-2 {
+    top: 10%;
+    right: 10%;
+    transform: scale(0.9);
+    left: auto;
+    bottom: auto;
+    animation: floatCard-2 5s ease-in-out infinite;
+    animation-delay: 1.5s;
+}
+
+.card-3 {
+    bottom: 10%;
+    right: 34%;
+    top: auto;
+    left: auto;
+    transform: scale(1.2);
+    animation: floatCard-3 7s ease-in-out infinite;
+    animation-delay: 3s;
+}
+
+.card-4 {
+    top: 15%;
+    left: 5%;
+    transform: scale(0.8);
+    right: auto;
+    bottom: auto;
+    animation: floatCard-4 8s ease-in-out infinite;
+    animation-delay: 4.5s;
+}
+
+.floating-card h4 {
+    font-size: 0.9rem;
+    text-align: center;
+    color: var(--primary);
+    margin-bottom: 0.5rem;
+}
+
+.floating-card p {
+    font-size: 1.2rem;
+    text-align: center;
+    font-weight: 700;
+    color: var(--light);
+}
+
+.tech-icon {
+    width: 75px;
+    height: 75px;
+    background: var(--gradient-1);
+    border-radius: 15px;
+    display: flex;
+    align-items: center !important;
+    justify-content: center !important;
+    margin-bottom: 0.7rem;
+    color: var(--dark);
+}
+
+.tech-icon svg {
+    width: 35px;
+    height: 35px;
+}
+
+.whatsapp-text {
+    font-size: 1rem !important;
+}
+
+/* Section Styles */
+section {
+    padding: 6rem 3rem;
+    max-width: 1400px;
+    margin: 0 auto;
+    scroll-margin-top: 40px;
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 4rem;
+    animation: fadeInUp 1s ease;
+}
+
+.section-title {
+    font-size: 3.5rem;
+    font-weight: 900;
+    background: var(--gradient-1);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 1rem;
+}
+
+.section-description {
+    font-size: 1.2rem;
+    color: var(--gray);
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* =========================================
+   ABOUT1 - BENTO GRID SECTION
+   ========================================= */
+.about1-section {
+    padding: 4rem 3rem 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.about1-container {
+    background: #111318;
+    border-radius: 32px;
+    padding: 3.5rem 3rem;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+}
+
+.about1-tagline {
+    font-size: 3rem;
+    font-weight: 800;
+    text-align: center;
+    margin-bottom: 2.5rem;
+    line-height: 1.2;
+    background: linear-gradient(135deg, #ffffff 0%, #b0b0b0 40%, #e91e63 70%, #8338ec 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Bento Grid - Top Row */
+.about1-bento-grid {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+/* Profile Card */
+.about1-profile-card {
+    background: #1a1d24;
+    border-radius: 24px;
+    padding: 2rem;
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    transition: all 0.3s ease;
+}
+
+.about1-profile-card:hover {
+    border-color: rgba(233, 30, 99, 0.15);
+    box-shadow: 0 8px 30px rgba(233, 30, 99, 0.08);
+}
+
+.about1-profile-photo {
+    flex-shrink: 0;
+    width: 160px;
+    height: 180px;
+    border-radius: 16px;
+    overflow: hidden;
+    position: relative;
+}
+
+.about1-profile-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.95) saturate(1.1);
+}
+
+.about1-profile-photo::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(131, 56, 236, 0.2), rgba(233, 30, 99, 0.1));
+    border-radius: 16px;
+    pointer-events: none;
+}
+
+.about1-profile-bio p {
+    font-size: 0.95rem;
+    color: #9ca3af;
+    line-height: 1.75;
+    margin: 0;
+}
+
+/* Social Links Grid */
+.about1-social-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.about1-social-card {
+    background: #1a1d24;
+    border-radius: 20px;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    text-decoration: none;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.about1-social-card svg {
+    color: #d1d5db;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.about1-social-card span {
+    font-size: 0.85rem;
+    color: #9ca3af;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.about1-social-card:hover {
+    border-color: rgba(233, 30, 99, 0.2);
+    background: #1e2128;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+
+.about1-social-card:hover svg {
+    color: var(--primary);
+    transform: scale(1.15);
+}
+
+.about1-social-card:hover span {
+    color: #fff;
+}
+
+/* Bottom Row */
+.about1-bottom-row {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 1.5rem;
+}
+
+.about1-toolstack-card,
+.about1-skillstack-card {
+    background: #1a1d24;
+    border-radius: 24px;
+    padding: 1.8rem 2rem;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    transition: all 0.3s ease;
+}
+
+.about1-toolstack-card:hover,
+.about1-skillstack-card:hover {
+    border-color: rgba(233, 30, 99, 0.15);
+    box-shadow: 0 8px 30px rgba(233, 30, 99, 0.08);
+}
+
+.about1-card-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 1.2rem;
+}
+
+/* Tool Icons */
+.about1-tool-icons {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.about1-tool-icon {
+    width: 48px;
+    height: 48px;
+    background: #252830;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.about1-tool-icon:hover {
+    transform: scale(1.15) translateY(-3px);
+    background: #2d3038;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+.about1-tool-icon img {
+    width: 28px;
+    height: 28px;
+}
+
+/* Skill Tags */
+.about1-skill-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+}
+
+.about1-skill-tag {
+    background: #252830;
+    color: #d1d5db;
+    padding: 0.6rem 1.3rem;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    transition: all 0.3s ease;
+    cursor: default;
+}
+
+.about1-skill-tag:hover {
+    background: rgba(233, 30, 99, 0.1);
+    border-color: rgba(233, 30, 99, 0.25);
+    color: #fff;
+    transform: translateY(-2px);
+}
+
+/* About1 Responsive */
+@media (max-width: 900px) {
+    .about1-bento-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .about1-bottom-row {
+        grid-template-columns: 1fr;
+    }
+
+    .about1-tagline {
+        font-size: 2rem;
+    }
+
+    .about1-profile-card {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .about1-profile-photo {
+        width: 140px;
+        height: 160px;
+    }
+
+    .about1-container {
+        padding: 2rem 1.5rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .about1-section {
+        padding: 2rem 1rem;
+    }
+
+    .about1-tagline {
+        font-size: 1.6rem;
+    }
+
+    .about1-social-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 0.75rem;
+    }
+
+    .about1-social-card {
+        padding: 1.2rem;
+    }
+}
+
+/* About Section */
+.about-grid {
+    display: grid;
+    grid-template-columns: 1.9fr 1fr;
+    gap: 4rem;
+    align-items: center;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.skills-container {
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.about-content {
+    background: var(--card-bg);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 20px;
+    padding: 2.5rem;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.about-content h3 {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    background: var(--gradient-1);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.about-content p {
+    color: var(--gray);
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin-bottom: 2rem;
+}
+
+.about-content p:last-child {
+    margin-bottom: 0;
+}
+
+.about-content:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 60px rgba(233, 30, 99, 0.2);
+}
+
+.about-content::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 3px;
+    height: 100%;
+    background: var(--gradient-1);
+    transform: scaleY(0);
+    transform-origin: top;
+    transition: transform 0.3s ease;
+}
+
+.about-content:hover::before {
+    transform: scaleY(1);
+}
+
+.about-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.image-placeholder {
+    width: 350px;
+    height: 350px;
+    border-radius: 50%;
+    background: var(--card-bg);
+    border: 3px solid var(--primary);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 0 40px rgba(233, 30, 99, 0.3);
+    animation: pulse-image 4s ease-in-out infinite;
+}
+
+.image-placeholder img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.image-placeholder svg {
+    width: 150px;
+    height: 150px;
+    color: var(--primary);
+    opacity: 0.5;
+}
+
+.image-placeholder::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    animation: shimmer-image 5s infinite;
+}
+
+@keyframes pulse-image {
+
+    0%,
+    100% {
+        transform: scale(1);
+        box-shadow: 0 0 40px rgba(233, 30, 99, 0.3);
+    }
+
+    50% {
+        transform: scale(1.03);
+        box-shadow: 0 0 60px rgba(233, 30, 99, 0.5);
+    }
+}
+
+@keyframes shimmer-image {
+    0% {
+        left: -100%;
+    }
+
+    100% {
+        left: 100%;
+    }
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+}
+
+.stat-card {
+    background: var(--card-bg);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 20px;
+    padding: 2rem;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.stat-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: var(--gradient-1);
+    transform: scaleX(0);
+    transform-origin: center;
+    transition: transform 0.3s ease;
+}
+
+.stat-card:hover::before {
+    transform: scaleX(1);
+}
+
+.stat-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 60px rgba(233, 30, 99, 0.2);
+}
+
+.stat-number {
+    font-size: 3rem;
+    font-weight: 900;
+    background: var(--gradient-1);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 0.5rem;
+}
+
+.stat-label {
+    color: var(--gray);
+    font-size: 0.9rem;
+}
+
+
+
+
+/* =========================================
+   MILLION-DOLLAR ENTERPRISE SERVICE CARDS
+   ========================================= */
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2.5rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 10;
+}
+
+/* Base Card Wrapper - Handles the 1px gradient border trick */
+.enterprise-card {
+    position: relative;
+    border-radius: 24px;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.02) 50%, rgba(255, 255, 255, 0.0) 100%);
+    padding: 1px;
+    /* This 1px padding IS the glowing border */
+    transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+    isolation: isolate;
+    /* Creates a new stacking context */
+}
+
+/* The actual dark glass body of the card */
+.card-inner {
+    background: linear-gradient(180deg, rgba(13, 17, 28, 0.95) 0%, rgba(8, 11, 20, 0.98) 100%);
+    border-radius: 23px;
+    /* 1px smaller than outer wrapper */
+    padding: 2.5rem 2rem;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.05);
+    /* Inner top highlight */
+    transition: background 0.5s ease;
+}
+
+/* Ambient Background Glow (Hidden by default, massive on hover) */
+.ambient-glow {
+    position: absolute;
+    inset: 0;
+    border-radius: 24px;
+    filter: blur(40px);
+    opacity: 0;
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    z-index: -1;
+    pointer-events: none;
+}
+
+.cyan-glow {
+    background: rgba(233, 30, 99, 0.4);
+}
+
+.purple-glow {
+    background: rgba(131, 56, 236, 0.4);
+}
+
+.pink-glow {
+    background: rgba(255, 42, 133, 0.4);
+}
+
+/* Card Hover Mechanics */
+.enterprise-card:hover {
+    transform: translateY(-8px) scale(1.01);
+}
+
+.enterprise-card:hover .ambient-glow {
+    opacity: 1;
+    transform: translateY(10px);
+    /* Pushes the glow slightly down for depth */
+}
+
+.enterprise-card:hover .card-inner {
+    background: linear-gradient(180deg, rgba(16, 21, 35, 0.95) 0%, rgba(10, 14, 25, 0.98) 100%);
+}
+
+/* The Icon Box: Frosted Glass Cube */
+.enterprise-icon-box {
+    width: 56px;
+    height: 56px;
+    background: linear-gradient(135deg, rgba(233, 30, 99, 0.15), rgba(233, 30, 99, 0.02));
+    border: 1px solid rgba(233, 30, 99, 0.2);
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.8rem;
+    color: #e91e63;
+    box-shadow: inset 0 2px 10px rgba(255, 255, 255, 0.1), 0 10px 20px -10px rgba(233, 30, 99, 0.4);
+    transition: transform 0.5s ease, box-shadow 0.5s ease;
+}
+
+.enterprise-icon-box svg {
+    width: 26px;
+    height: 26px;
+    filter: drop-shadow(0 0 8px rgba(233, 30, 99, 0.6));
+    /* Glowing SVG */
+}
+
+.enterprise-card:hover .enterprise-icon-box {
+    transform: scale(1.05) rotate(-3deg);
+    box-shadow: inset 0 2px 10px rgba(255, 255, 255, 0.2), 0 15px 25px -10px rgba(233, 30, 99, 0.6);
+}
+
+/* Typography */
+.enterprise-title {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 1rem;
+    letter-spacing: -0.5px;
+    transition: color 0.3s ease;
+}
+
+.enterprise-desc {
+    color: #8b95a5;
+    /* Sophisticated blue-gray */
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+    flex-grow: 1;
+    /* Pushes button to bottom */
+}
+
+.enterprise-card:hover .enterprise-title {
+    color: #e91e63;
+    /* Text glows on card hover */
+}
+
+/* Call to Action Button */
+.enterprise-footer {
+    display: flex;
+    align-items: center;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    /* Subtle divider */
+    padding-top: 1.5rem;
+}
+
+.enterprise-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.btn-arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 50%;
+    transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.enterprise-btn:hover {
+    color: #e91e63;
+}
+
+.enterprise-btn:hover .btn-arrow {
+    background: rgba(233, 30, 99, 0.15);
+    transform: translateX(6px);
+    color: #e91e63;
+}
+
+/* Mobile Adjustments */
+@media (max-width: 768px) {
+    .services-grid {
+        grid-template-columns: 1fr;
+        /* 1 column on mobile */
+        gap: 1.5rem;
+        padding: 0 10px;
+    }
+
+    .card-inner {
+        padding: 2rem 1.5rem;
+    }
+
+    .cta-subtitle {
+        text-align: center;
+    }
+}
+
+/* =========================================
+   TOP BORDER HOVER ANIMATION (Laser Sweep)
+   ========================================= */
+
+/* Ensure the card inner container can hold the absolute positioned laser */
+.card-inner {
+    position: relative;
+    overflow: hidden;
+    /* Keeps the laser inside the rounded corners */
+}
+
+/* The Animated Laser Line */
+.card-inner::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    /* Thickness of the line */
+    /* Center-weighted gradient for a "light beam" effect */
+    background: linear-gradient(90deg, transparent 0%, #e91e63 50%, transparent 100%);
+
+    /* Animation setup: Starts at 0 width from the center */
+    transform: scaleX(0);
+    transform-origin: center;
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    /* Super smooth Apple-like easing */
+    z-index: 20;
+
+    /* Strong neon glow */
+    box-shadow: 0 2px 15px rgba(233, 30, 99, 0.8), 0 0 5px rgba(233, 30, 99, 0.5);
+}
+
+/* Trigger the sweep on card hover */
+.enterprise-card:hover .card-inner::before {
+    transform: scaleX(1);
+}
+
+/* =========================================
+   PREMIUM CYBER-GLASS BUTTON (Services CTA)
+   ========================================= */
+
+.premium-cta-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.cta-subtitle {
+    font-size: 0.85rem;
+    color: var(--gray);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+.btn-cyber-glass {
+    position: relative;
+    display: inline-block;
+    padding: 2px;
+    /* Space for the animated border */
+    border-radius: 50px;
+    text-decoration: none;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.05);
+    /* Very subtle base */
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.btn-cyber-glass .btn-content {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: var(--dark);
+    /* Inner dark background */
+    padding: 16px 36px;
+    border-radius: 50px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--light);
+    letter-spacing: 0.5px;
+    position: relative;
+    z-index: 2;
+    transition: background 0.3s ease, color 0.3s ease;
+    backdrop-filter: blur(10px);
+}
+
+.btn-cyber-glass .arrow-icon {
+    transition: transform 0.3s ease;
+}
+
+/* The Animated Neon Border Glow */
+.btn-cyber-glass .btn-glow {
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: conic-gradient(transparent,
+            transparent,
+            transparent,
+            var(--primary));
+    animation: rotateGlow 4s linear infinite;
+    z-index: 1;
+    opacity: 0.8;
+}
+
+/* Hover Effects */
+.btn-cyber-glass:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(233, 30, 99, 0.2);
+}
+
+.btn-cyber-glass:hover .btn-content {
+    background: rgba(10, 14, 30, 0.9);
+    /* Slightly lighter on hover */
+    color: var(--primary);
+}
+
+.btn-cyber-glass:hover .arrow-icon {
+    transform: translateX(5px);
+}
+
+/* The Rotation Animation */
+@keyframes rotateGlow {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+
+/* Card Layout Adjustment for Bottom Alignment */
+.service-card {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.service-card p {
+    flex-grow: 1;
+    /* Pushes the button to the very bottom automatically */
+    margin-bottom: 0;
+}
+
+/* Problem-Solving Action Button */
+.service-action-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 2rem;
+    padding: 8px 20px;
+    background: rgba(233, 30, 99, 0.05);
+    /* Ghost background */
+    border: 1px solid rgba(233, 30, 99, 0.2);
+    border-radius: 50px;
+    color: var(--primary);
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.service-action-btn svg {
+    transition: transform 0.3s ease;
+}
+
+.service-action-btn:hover {
+    background: var(--primary);
+    /* Fills with Neon */
+    color: var(--darker);
+    /* Text becomes dark for contrast */
+    box-shadow: 0 0 15px rgba(233, 30, 99, 0.4);
+}
+
+.service-action-btn:hover svg {
+    transform: translateX(4px);
+    /* Arrow slides right slightly */
+}
+
+
+
+/* ... inside <style> ... */
+
+.skill-tag {
+    background: var(--card-bg);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(233, 30, 99, 0.2);
+    padding: 0.6rem 1.4rem;
+    /* Slight adjustment for visual balance */
+    border-radius: 50px;
+    color: var(--primary);
+    font-weight: 600;
+    transition: all 0.3s ease;
+    cursor: pointer;
+
+    /* --- NEW FLEX PROPERTIES FOR LOGO ALIGNMENT --- */
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    /* Space between logo and text */
+}
+
+/* --- NEW RULE FOR THE LOGO IMAGE --- */
+.skill-tag img {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+}
+
+.skill-tag:hover {
+    background: rgba(233, 30, 99, 0.1);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(233, 30, 99, 0.2);
+}
+
+.skills-cloud {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+}
+
+#skills .skills-cloud {
+    margin-bottom: 3rem;
+}
+
+.skill-tag {
+    background: var(--card-bg);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(233, 30, 99, 0.2);
+    padding: 0.8rem 1.5rem;
+    border-radius: 50px;
+    color: var(--primary);
+    font-weight: 600;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.skill-tag:hover {
+    background: rgba(233, 30, 99, 0.1);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(233, 30, 99, 0.2);
+}
+
+/* Projects Section */
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2.5rem;
+    margin-top: 3rem;
+}
+
+.project-card {
+    background: var(--card-bg);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 25px;
+    overflow: hidden;
+    transition: all 0.4s ease;
+    cursor: pointer;
+    position: relative;
+    /* --- NEW FLEX PROPERTIES --- */
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    /* Forces cards to be equal height in the grid */
+}
+
+.project-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--gradient-1);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    z-index: 0;
+}
+
+.project-card:hover::before {
+    opacity: 0.05;
+}
+
+.project-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 30px 80px rgba(233, 30, 99, 0.3);
+    border-color: rgba(233, 30, 99, 0.3);
+}
+
+/* GALLERY STYLES */
+.project-gallery {
+    display: flex;
+    height: 250px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+    /* Firefox */
+    -ms-overflow-style: none;
+    /* IE 10+ */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.project-gallery::-webkit-scrollbar {
+    display: none;
+    /* Chrome/Safari */
+}
+
+.gallery-item {
+    min-width: 100%;
+    height: 100%;
+    scroll-snap-align: start;
+
+    object-fit: contain;
+    /* Shows full image, might leave black/white bars */
+    /* object-fit: cover; <--- Old setting (Crops to fill) */
+
+    transition: opacity 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: rgba(255, 255, 255, 0.5);
+    background: var(--darker);
+}
+
+.emoji-cover {
+    font-size: 4rem;
+    background: linear-gradient(135deg, rgba(233, 30, 99, 0.2), rgba(131, 56, 236, 0.2));
+    /* --- NEW LINES TO FIX DULLNESS --- */
+    color: #ffffff !important;
+    opacity: 1 !important;
+    text-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    /* Adds sharpness */
+}
+
+
+/* --- GALLERY NAVIGATION CONTROLS --- */
+.gallery-wrapper {
+    position: relative;
+    /* Acts as the anchor for absolute buttons */
+    overflow: hidden;
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
+}
+
+/* Navigation Arrows */
+.nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    font-size: 1.2rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    opacity: 0;
+    /* Hidden by default, shown on hover */
+    z-index: 10;
+}
+
+.project-card:hover .nav-btn {
+    opacity: 1;
+}
+
+.nav-btn:hover {
+    background: var(--primary);
+    color: var(--dark);
+}
+
+.prev-btn {
+    left: 10px;
+}
+
+.next-btn {
+    right: 10px;
+}
+
+/* Pagination Dots */
+.dots-container {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 5px;
+    z-index: 10;
+}
+
+.dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.dot.active {
+    background: var(--primary);
+    transform: scale(1.2);
+}
+
+/* Optional visual cue */
+.project-card:hover .gallery-item {
+    opacity: 0.95;
+}
+
+
+.project-content {
+    padding: 2rem;
+    position: relative;
+    z-index: 1;
+    /* --- NEW FLEX PROPERTIES --- */
+    flex: 1;
+    /* Takes up all remaining space */
+    display: flex;
+    flex-direction: column;
+}
+
+.project-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    text-align: center;
+    color: var(--light);
+}
+
+.project-description {
+    color: var(--gray);
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.project-tech {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 0.4rem;
+    justify-content: center;
+}
+
+.tech-badge {
+    background: rgba(233, 30, 99, 0.1);
+    color: var(--primary);
+    padding: 0.4rem 1rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    border: 1px solid rgba(233, 30, 99, 0.2);
+}
+
+/* 1. Adjust spacing container */
+.project-links {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    /* --- NEW SPACING PROPERTIES --- */
+    margin-top: auto;
+    /* Pushes buttons to the very bottom */
+    padding-top: 1.5rem;
+    /* Adds breathing room from the tech badges */
+}
+
+/* 2. Make buttons smaller to fit inside cards */
+.project-links .btn {
+    padding: 0.5rem 1.2rem;
+    font-size: 0.85rem;
+    border-radius: 50px;
+}
+
+/* 3. Style the SVGs inside buttons */
+.project-links .btn svg {
+    width: 16px;
+    height: 16px;
+    fill: currentColor;
+    /* Inherits text color */
+}
+
+.project-link:hover {
+    color: var(--light);
+    transform: translateX(5px);
+}
+
+.view-all-projects {
+    text-align: center;
+    margin-top: 4rem;
+}
+
+/* Education Section */
+.timeline {
+    position: relative;
+    padding: 2rem 0;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: var(--gradient-1);
+    transform: translateX(-50%);
+}
+
+.timeline-item {
+    display: flex;
+    margin-bottom: 4rem;
+    position: relative;
+    opacity: 0;
+    animation: slideIn 0.8s ease forwards;
+}
+
+.timeline-item:nth-child(odd) {
+    flex-direction: row;
+    animation-delay: 0.2s;
+}
+
+.timeline-item:nth-child(even) {
+    flex-direction: row-reverse;
+    animation-delay: 0.4s;
+}
+
+@keyframes slideIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+}
+
+.timeline-content {
+    flex: 1;
+    background: var(--dark);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 20px;
+    padding: 2rem;
+    margin: 0 2rem;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.timeline-content::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    width: 20px;
+    height: 20px;
+    background: var(--primary);
+    border-radius: 50%;
+    border: 4px solid var(--darker);
+    transform: translateY(-50%);
+}
+
+.timeline-item:nth-child(odd) .timeline-content::before {
+    right: -62px;
+}
+
+.timeline-item:nth-child(even) .timeline-content::before {
+    left: -62px;
+}
+
+.timeline-content:hover {
+    transform: scale(1.02);
+    box-shadow: 0 20px 60px rgba(233, 30, 99, 0.2);
+}
+
+.timeline-year {
+    font-size: 2rem;
+    font-weight: 900;
+    background: var(--gradient-1);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 1rem;
+}
+
+.timeline-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    color: var(--light);
+}
+
+.timeline-subtitle {
+    color: var(--primary);
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.timeline-description {
+    color: var(--gray);
+    line-height: 1.7;
+}
+
+/* Contact Section */
+.contact-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    margin-top: 3rem;
+}
+
+.contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.contact-card {
+    background: var(--card-bg);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 20px;
+    padding: 2rem;
+    transition: all 0.3s ease;
+}
+
+.contact-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 60px rgba(233, 30, 99, 0.2);
+}
+
+.contact-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    color: var(--light);
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    color: var(--gray);
+    transition: all 0.3s ease;
+}
+
+.contact-item:hover {
+    color: var(--primary);
+    transform: translateX(5px);
+}
+
+.contact-icon {
+    width: 50px;
+    height: 50px;
+    background: var(--gradient-1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+}
+
+.social-links {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.social-link {
+    width: 50px;
+    height: 50px;
+    background: var(--card-bg);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary);
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.social-link:hover {
+    background: var(--gradient-1);
+    color: var(--dark);
+    transform: translateY(-5px) rotate(360deg);
+    box-shadow: 0 10px 30px rgba(233, 30, 99, 0.3);
+}
+
+/* Contact Form */
+.contact-form {
+    background: var(--card-bg);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 20px;
+    padding: 2.5rem;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--light);
+    font-weight: 600;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+    width: 100%;
+    padding: 1rem 1.5rem;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    color: var(--light);
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    font-family: inherit;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+    outline: none;
+    border-color: var(--primary);
+    background: rgba(233, 30, 99, 0.05);
+    box-shadow: 0 0 0 3px rgba(233, 30, 99, 0.1);
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 150px;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.submit-btn {
+    width: 100%;
+    padding: 1.2rem;
+    background: var(--gradient-1);
+    border: none;
+    border-radius: 12px;
+    color: var(--dark);
+    font-weight: 700;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 1rem;
+}
+
+.submit-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 40px rgba(233, 30, 99, 0.4);
+}
+
+/* --- EXPERT FLEXBOX FOOTER LAYOUT --- */
+footer {
+    background: var(--darker);
+    padding: 4rem 0 2rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    font-size: 0.95rem;
+}
+
+/* THE CONTAINER ENGINE */
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+
+    /* 1. Force Horizontal Layout */
+    display: flex;
+    flex-direction: row;
+
+    /* 2. Space items apart evenly */
+    justify-content: space-between;
+
+    /* 3. Align everything to the top */
+    align-items: flex-start;
+
+    /* 4. Safety wrap: allows stacking ONLY if screen is too small */
+    flex-wrap: wrap;
+    gap: 3rem;
+}
+
+/* SECTION 1: BRAND (Wider) */
+.footer-brand {
+    flex: 2;
+    /* Takes up 2 portions of space (approx 40-50%) */
+    min-width: 300px;
+    /* Prevents it from getting too squashed */
+    padding-right: 2rem;
+    /* Breathing room before the links */
+}
+
+/* SECTIONS 2 & 3: LINKS & CONNECT (Narrower) */
+.footer-column {
+    flex: 1;
+    /* Takes up 1 portion of space (approx 25%) */
+    min-width: 150px;
+    /* Ensures columns don't collapse */
+}
+
+/* --- TYPOGRAPHY & STYLING --- */
+.footer-brand h2 {
+    font-size: 1.8rem;
+    font-weight: 800;
+    background: var(--gradient-1);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 1rem;
+    display: inline-block;
+}
+
+.footer-brand p {
+    color: var(--gray);
+    line-height: 1.6;
+    margin: 0;
+}
+
+.footer-heading {
+    color: var(--light);
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 1.2rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.footer-links-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+.footer-links-list a {
+    color: var(--gray);
+    text-decoration: none;
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+.footer-links-list a:hover {
+    color: var(--primary);
+    padding-left: 5px;
+}
+
+/* FOOTER BOTTOM BAR */
+.footer-bottom {
+    max-width: 1200px;
+    margin: 3rem auto 0;
+    padding: 1.5rem 2rem 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: var(--gray);
+    font-size: 0.85rem;
+}
+
+.footer-heart {
+    color: var(--secondary);
+    animation: pulse 2s infinite;
+}
+
+/* --- Greeting Tooltip (The Pop-up) --- */
+.chat-tooltip {
+    position: absolute;
+    bottom: 15px;
+    /* Align vertically with button */
+    right: 85px;
+    /* Push to the left of the button */
+
+    background: rgba(10, 14, 30, 0.95);
+    /* Deep Navy Background */
+    border: 1px solid #e91e63;
+    /* Neon Cyan Border */
+    color: #ffffff;
+    padding: 10px 16px;
+    border-radius: 12px;
+    border-bottom-right-radius: 2px;
+    /* Speech bubble look */
+
+    font-size: 0.9rem;
+    font-weight: 400;
+    white-space: nowrap;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+
+    /* Animation State (Hidden by default) */
+    opacity: 0;
+    transform: translateY(10px) scale(0.9);
+    visibility: hidden;
+    transition: all 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+    /* Bouncy effect */
+    z-index: 9998;
+}
+
+/* The "Show" State */
+.chat-tooltip.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0) scale(1);
+}
+
+/* The Arrow pointing to the button */
+.chat-tooltip::after {
+    content: '';
+    position: absolute;
+    right: -6px;
+    bottom: 10px;
+    width: 0;
+    height: 0;
+    border-top: 6px solid transparent;
+    border-bottom: 6px solid transparent;
+    border-left: 6px solid #e91e63;
+    /* Neon Arrow */
+}
+
+/* Hide on Mobile if screen is too narrow */
+@media (max-width: 280px) {
+    .chat-tooltip {
+        display: none !important;
+    }
+}
+
+/* Scroll Animations */
+.fade-in {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 1s ease;
+}
+
+.fade-in.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* =========================================
+   PROFESSIONAL CLIENT WORK SECTION
+   ========================================= */
+
+.client-work-container {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.client-card {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+
+    /* Premium Dark Glass Look */
+    background: linear-gradient(135deg, rgba(20, 27, 45, 0.8), rgba(10, 14, 30, 0.9));
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 20px;
+    padding: 2rem;
+
+    /* Neon Left Accent (The "Pro" Touch) */
+    border-left: 4px solid var(--primary);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    will-change: transform;
+}
+
+.client-card:hover {
+    transform: translateX(10px);
+    /* Slides slightly right on hover */
+    box-shadow: 0 10px 40px rgba(233, 30, 99, 0.1);
+    background: linear-gradient(135deg, rgba(25, 35, 60, 0.9), rgba(15, 20, 40, 0.95));
+}
+
+/* Visual Side (Logo/Icon) */
+.client-visual {
+    flex-shrink: 0;
+}
+
+.client-logo-wrapper {
+    width: 80px;
+    height: 80px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    overflow: hidden;
+    /* Ensures image doesn't bleed out */
+    padding: 10px;
+    /* Padding so logo isn't touching edges */
+}
+
+/* --- NEW IMAGE STYLES --- */
+.client-logo-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    /* Keeps aspect ratio */
+    filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.5));
+    /* Adds depth to logo */
+}
+
+/* Content Side */
+.client-content {
+    flex: 1;
+}
+
+.client-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.8rem;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.client-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--light);
+    margin: 0;
+}
+
+.client-badge {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 5px 12px;
+    border-radius: 50px;
+    font-weight: 600;
+    border: 1px solid;
+    color: #00ff88;
+    background: rgba(0, 255, 136, 0.1);
+    border-color: rgba(0, 255, 136, 0.3);
+}
+
+.client-description {
+    color: var(--gray);
+    font-size: 1rem;
+    margin-bottom: 1.2rem;
+    line-height: 1.6;
+}
+
+.client-description strong {
+    color: var(--light);
+}
+
+/* Tech Stack Tags */
+.client-tech-stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.client-tech-stack span {
+    font-size: 0.85rem;
+    color: var(--primary);
+    background: rgba(233, 30, 99, 0.05);
+    padding: 4px 12px;
+    border-radius: 8px;
+    border: 1px solid rgba(233, 30, 99, 0.2);
+}
+
+.client-link {
+    display: inline-block;
+    margin-top: 1rem;
+    color: var(--light);
+    font-weight: 600;
+    text-decoration: none;
+    border-bottom: 1px dotted var(--primary);
+    transition: color 0.3s;
+}
+
+.client-link:hover {
+    color: var(--primary);
+}
+
+/* --- NEW: CLIENT REVIEW BOX --- */
+.client-review {
+    background: rgba(255, 255, 255, 0.03);
+    border-left: 3px solid rgba(131, 56, 236, 0.5);
+    /* Purple accent */
+    padding: 1rem 1.2rem;
+    border-radius: 0 12px 12px 0;
+    margin: 1.5rem 0;
+    position: relative;
+}
+
+.quote-icon {
+    position: absolute;
+    top: -10px;
+    left: 10px;
+    font-size: 1.5rem;
+    color: rgba(131, 56, 236, 0.8);
+    background: var(--darker);
+    /* Masks the line behind it */
+    padding: 0 5px;
+    line-height: 1;
+}
+
+.client-review p {
+    font-style: italic;
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 0.95rem;
+    margin-bottom: 0.5rem;
+    line-height: 1.5;
+}
+
+.review-author {
+    display: block;
+    font-size: 0.8rem;
+    color: var(--primary);
+    /* Neon Cyan */
+    font-weight: 600;
+    text-align: right;
+}
+
+/* --- NEW: CARD FOOTER (Stack & Link) --- */
+.client-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.client-visit-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    border-radius: 50px;
+    background: rgba(233, 30, 99, 0.1);
+    color: var(--primary);
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-decoration: none;
+    border: 1px solid rgba(233, 30, 99, 0.3);
+    transition: all 0.3s ease;
+}
+
+.client-visit-btn:hover {
+    background: var(--primary);
+    color: var(--dark);
+    box-shadow: 0 0 15px rgba(233, 30, 99, 0.4);
+    transform: translateY(-2px);
+}
+
+/* =========================================
+   UPDATED CLIENT CARD (With Image)
+   ========================================= */
+
+.client-work-container {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    max-width: 1200px;
+    /* Increased width to fit image */
+    margin: 0 auto;
+}
+
+.client-card {
+    display: grid;
+    /* Layout: Logo | Content | Image */
+    grid-template-columns: 80px 1.2fr 1fr;
+    gap: 2rem;
+
+    background: linear-gradient(135deg, rgba(20, 27, 45, 0.8), rgba(10, 14, 30, 0.9));
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 24px;
+    padding: 2.5rem;
+
+    /* Neon Accent */
+    border-left: 4px solid var(--primary);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+
+    position: relative;
+    overflow: hidden;
+    /* Keeps image inside rounded corners */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.client-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+/* 1. Visual Side (Logo) */
+.client-visual {
+    grid-column: 1;
+}
+
+/* 2. Content Side */
+.client-content {
+    grid-column: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* 3. Image Preview Side (16:9 Optimized) */
+.client-preview {
+    grid-column: 3;
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+
+    /* FORCE 16:9 ASPECT RATIO */
+    aspect-ratio: 16 / 9;
+    height: auto;
+    /* Let aspect-ratio dictate height */
+    align-self: center;
+    /* Vertically center image in the grid cell */
+
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4);
+    background: #000;
+    /* Dark background letterboxing */
+}
+
+.client-preview img {
+    width: 100%;
+    height: 100%;
+
+    /* THE FIX: "contain" shows full image with black bars if needed */
+    /* OR "cover" with "object-position" focuses on the important part */
+
+    /* OPTION A: Best for Screenshots (Shows full width, crops bottom) */
+    object-fit: cover;
+    object-position: top center;
+    /* Anchors to top of website */
+
+    /* OPTION B: Best for Logos/Art (Shows Everything) */
+    /* object-fit: contain; */
+
+    transition: transform 0.5s ease;
+}
+
+/* Hover Effect: Zoom image slightly */
+.client-card:hover .client-preview img {
+    transform: scale(1.05);
+}
+
+/* Overlay gradient to make it blend with theme */
+.preview-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, transparent 0%, rgba(10, 14, 30, 0.6) 100%);
+    pointer-events: none;
+}
+
+/* =========================================
+   PROFESSIONAL CERTIFICATIONS
+   ========================================= */
+
+.cert-grid {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 2rem;
+    flex-wrap: wrap;
+}
+
+.cert-card {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    background: linear-gradient(135deg, rgba(20, 27, 45, 0.6), rgba(10, 14, 30, 0.8));
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    padding: 1.5rem;
+    max-width: 600px;
+    width: 100%;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+    /* Gold/Amber Glow for "Achievement" feel */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.cert-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(255, 215, 0, 0.3);
+    /* Gold Tint */
+    box-shadow: 0 15px 40px rgba(255, 215, 0, 0.1);
+}
+
+/* The Image Thumbnail */
+.cert-visual {
+    width: 160px;
+    height: 110px;
+    border-radius: 10px;
+    overflow: hidden;
+    flex-shrink: 0;
+    position: relative;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    cursor: zoom-in;
+    transition: border-color 0.3s ease;
+}
+
+.cert-visual:hover {
+    border-color: var(--primary);
+}
+
+.cert-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transition: transform 0.5s ease;
+}
+
+.cert-card:hover .cert-img {
+    transform: scale(1.1);
+}
+
+/* Cert overlay & icon image (actual HTML structure) */
+.cert-overlay {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cert-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+
+.cert-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transition: transform 0.5s ease;
+}
+
+.cert-card:hover .cert-icon img {
+    transform: scale(1.1);
+}
+
+/* Details Side */
+.cert-details {
+    flex: 1;
+}
+
+.cert-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
+.cert-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #fff;
+    margin: 0;
+}
+
+.cert-badge {
+    background: rgba(255, 215, 0, 0.1);
+    /* Gold Background */
+    color: #ffd700;
+    /* Gold Text */
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 50px;
+    border: 1px solid rgba(255, 215, 0, 0.3);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.cert-issuer {
+    color: var(--gray);
+    font-size: 0.95rem;
+    margin-bottom: 0.2rem;
+}
+
+.cert-issuer strong {
+    color: var(--light);
+}
+
+.cert-date {
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 0.85rem;
+    margin-bottom: 1rem;
+    font-family: monospace;
+    /* Looks like a serial number */
+}
+
+/* Verify Button */
+.cert-verify-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--primary);
+    text-decoration: none;
+    padding: 8px 16px;
+    border-radius: 8px;
+    background: rgba(233, 30, 99, 0.05);
+    border: 1px solid rgba(233, 30, 99, 0.2);
+    transition: all 0.3s ease;
+}
+
+.cert-verify-btn:hover {
+    background: var(--primary);
+    color: var(--dark);
+    box-shadow: 0 0 15px rgba(233, 30, 99, 0.4);
+}
+
+/* --- CERTIFICATE LIGHTBOX (Click to Expand) --- */
+.cert-lightbox {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    z-index: 10000;
+    /* Highest priority */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+}
+
+.cert-lightbox.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.cert-lightbox img {
+    max-width: 90vw;
+    max-height: 90vh;
+    border-radius: 12px;
+    box-shadow: 0 0 50px rgba(233, 30, 99, 0.2);
+    transform: scale(0.9);
+    transition: transform 0.3s ease;
+    border: 2px solid var(--primary);
+    object-fit: contain;
+}
+
+.cert-lightbox.active img {
+    transform: scale(1);
+}
+
+.cert-lightbox-close {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    font-size: 3rem;
+    color: white;
+    cursor: pointer;
+    transition: color 0.3s;
+    line-height: 1;
+}
+
+.cert-lightbox-close:hover {
+    color: var(--primary);
+}
+
+/* Make sure user knows Client Project Images are clickable */
+.client-preview img {
+    cursor: zoom-in;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .hero-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+
+    .hero-text h1 {
+        font-size: 3.5rem;
+    }
+
+    .hero-text .subtitle {
+        font-size: 1.5rem;
+        /* --- MOBILE FIX --- */
+        justify-content: center;
+        /* Force center alignment on mobile */
+        min-height: 3rem;
+        /* Slightly smaller reserved height for mobile font */
+        margin-bottom: 1rem;
+        /* Adjust spacing if needed */
+    }
+
+    .hero-buttons {
+        justify-content: center;
+    }
+
+    .about-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .about-image {
+        margin-top: 2rem;
+    }
+
+
+    .contact-container {
+        grid-template-columns: 1fr;
+    }
+
+    .timeline::before {
+        left: 30px;
+    }
+
+    .timeline-item {
+        flex-direction: row !important;
+    }
+
+    .timeline-content {
+        margin-left: 4rem;
+    }
+
+    .timeline-item:nth-child(odd) .timeline-content::before,
+    .timeline-item:nth-child(even) .timeline-content::before {
+        left: -62px;
+    }
+
+    @media (hover: none) and (pointer: coarse) {
+        .cursor {
+            display: none !important;
+        }
+    }
+}
+
+@media (max-width: 1024px) {
+
+    .client-card {
+        /* Switch to Stack Layout */
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 1.5rem !important;
+        padding: 1.5rem !important;
+
+        /* Reset Borders */
+        border-left: none !important;
+        border-top: 4px solid var(--primary) !important;
+    }
+
+    /* Move Image between Description and Footer */
+    .client-preview {
+        width: 100%;
+        /* Reset height constraint */
+        height: auto !important;
+        /* Enforce ratio on mobile too */
+        aspect-ratio: 16 / 9 !important;
+        margin: 1.5rem 0;
+    }
+
+    /* Re-order flex items if needed */
+    .client-visual {
+        order: 1;
+    }
+
+    .client-content {
+        order: 2;
+    }
+
+    /* The preview will naturally sit at bottom, which is fine */
+}
+
+@media (max-width: 768px) {
+    nav {
+        padding: 0 1.5rem;
+    }
+
+    .fade-in {
+        opacity: 1 !important;
+        transform: none !important;
+        animation: none !important;
+        transition: none !important;
+        visibility: visible !important;
+    }
+
+    @media (hover: none) and (pointer: coarse) {
+        .cursor {
+            display: none !important;
+        }
+    }
+
+    .nav-links {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 70%;
+        height: 100vh;
+        background: rgba(6, 8, 24, 0.98);
+        backdrop-filter: blur(20px);
+        flex-direction: column;
+        padding: 6rem 2rem;
+        gap: 2rem;
+        transition: right 0.4s ease;
+        border-left: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .nav-links.active {
+        right: 0;
+    }
+
+    .mobile-menu {
+        display: flex;
+    }
+
+    section {
+        padding: 4rem 1.5rem;
+        scroll-margin-top: 60px;
+    }
+
+    .hero {
+        padding: 6rem 1.5rem 3rem;
+        min-height: auto;
+    }
+
+    .hero-text h1 {
+        font-size: 2.5rem;
+        margin-top: 2rem;
+    }
+
+    .hero-text .subtitle {
+        font-size: 1.3rem;
+    }
+
+    .hero-text p {
+        font-size: 1rem;
+    }
+
+    .hero-buttons {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .btn {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .hero-image-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        /* Two equal columns */
+        gap: 15px;
+        /* Space between cards */
+
+        height: auto;
+        /* Remove fixed height */
+        width: 100%;
+        padding: 0 1rem;
+        /* Slight padding from screen edges */
+        margin-top: 2rem;
+    }
+
+    .section-title {
+        font-size: 2.5rem;
+    }
+
+    .image-placeholder svg {
+        width: 100px;
+        height: 100px;
+    }
+
+    /* --- INSIDE @media (max-width: 768px) --- */
+
+    /* Professional Work Mobile Fixes */
+    .client-card {
+        flex-direction: column !important;
+        /* Stack vertically */
+        align-items: flex-start !important;
+        gap: 1.5rem !important;
+
+        /* Mobile styling stability */
+        border-left: none !important;
+        border-top: 4px solid var(--primary) !important;
+        /* Move accent to top */
+        transform: none !important;
+        margin-bottom: 0 !important;
+
+        /* Render Optimizations */
+        opacity: 1 !important;
+        visibility: visible !important;
+        backdrop-filter: none !important;
+        background: rgba(17, 25, 40, 0.95) !important;
+        contain: content;
+    }
+
+    .client-card:hover {
+        transform: none !important;
+    }
+
+    .client-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 5px;
+    }
+
+    .client-logo-wrapper {
+        width: 60px !important;
+        height: 60px !important;
+        padding: 8px !important;
+        /* Slightly less padding on mobile */
+    }
+
+    .client-description {
+        color: var(--gray);
+        font-size: 0.7rem;
+        text-align: center;
+        margin-bottom: 1.2rem;
+        line-height: 1.6;
+    }
+
+
+    /* Client Card Mobile Updates */
+    .client-footer {
+        flex-direction: column;
+        align-items: flex-start !important;
+        gap: 1.5rem !important;
+    }
+
+    .client-visit-btn {
+        width: 100%;
+        justify-content: center;
+        padding: 12px 0 !important;
+        /* Bigger tap target */
+    }
+
+    /* Ensure review box doesn't break layout */
+    .client-review {
+        margin: 1rem 0 !important;
+        border-left: 2px solid rgba(131, 56, 236, 0.5) !important;
+    }
+
+    /* =========================================
+       3. ABOUT SECTION STABILIZATION
+       ========================================= */
+
+    /* 1. Fix Layout Shift & Delay */
+    .about-grid {
+        /* Force vertical stack */
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 2rem !important;
+
+        /* Instant Visibility */
+        opacity: 1 !important;
+        animation: none !important;
+        transform: none !important;
+        transition: none !important;
+    }
+
+    /* 2. Optimize the Text Card (Remove Lag) */
+    .about-content {
+        /* A. Instant Show */
+        opacity: 1 !important;
+        visibility: visible !important;
+
+        /* B. Kill Physics */
+        transform: none !important;
+        animation: none !important;
+        transition: none !important;
+
+        /* C. Render Optimization (Fixes "Black Blocks") */
+        /* Removing blur here allows the text to render instantly */
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+        background: rgba(17, 25, 40, 0.95) !important;
+        /* Solid dark tint */
+        border: none !important;
+        box-shadow: none !important;
+
+        /* D. Paint Isolation */
+        contain: content;
+        /* --- PROFESSIONAL JUSTIFICATION --- */
+        text-align: left;
+        /* Aligns text to both edges */
+    }
+
+    /* Restore the Side-Line (Static & Visible) */
+    .about-content::before {
+        content: '' !important;
+        display: block !important;
+        position: absolute !important;
+        left: 0 !important;
+        top: 0 !important;
+
+        /* Visible Specs */
+        width: 4px !important;
+        height: 100% !important;
+
+        /* Force Visible (No hover needed) */
+        transform: scaleY(1) !important;
+
+        /* Neon Color */
+        background: var(--gradient-1) !important;
+
+        /* Rounded edges for the line */
+        border-top-left-radius: 20px;
+        border-bottom-left-radius: 20px;
+    }
+
+    /* 3. Stabilize the Image Container */
+    .about-image {
+        /* Move to top */
+        order: -1 !important;
+        margin-top: 0 !important;
+        margin-bottom: 2rem !important;
+
+        /* Physics Reset */
+        opacity: 1 !important;
+        animation: none !important;
+        transform: none !important;
+    }
+
+    /* 4. Fix the Image Placeholder (The Source of "Empty Space") */
+    .image-placeholder {
+        /* A. Fixed Size Constraints */
+        width: 250px !important;
+        height: 250px !important;
+
+        /* B. Kill Heavy Animations */
+        animation: none !important;
+        /* Stop the "Pulse" - major lag killer */
+        box-shadow: none !important;
+        /* Remove heavy glow */
+        border: 3px solid var(--primary) !important;
+
+        /* C. Render Isolation */
+        contain: strict;
+        /* Tells browser: "Nothing inside here affects outside" */
+
+        /* D. Remove Shimmer (CPU Saver) */
+        background: var(--card-bg) !important;
+    }
+
+    .image-placeholder::before {
+        display: none !important;
+        /* Remove the "Shine" animation */
+    }
+
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .projects-grid {
+        /* Switch to Flex Column for rock-solid stability on mobile */
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 2.5rem !important;
+
+        /* Remove container-level delays */
+        animation: none !important;
+        transition: none !important;
+        opacity: 1 !important;
+        /* Ensure grid itself is visible */
+    }
+
+    .project-card {
+        /* A. Layout Physics */
+        height: auto !important;
+        /* Critical: Lets card grow naturally, prevents squashing */
+        min-height: auto !important;
+        width: 100% !important;
+
+        /* B. Instant Visibility (Fixes the Delay/Stuck issue) */
+        opacity: 1 !important;
+        visibility: visible !important;
+
+        /* C. Kill Performance Killers */
+        transform: none !important;
+        /* Stop the card from moving/floating */
+        animation: none !important;
+        /* Stop the "FadeInUp" on individual cards */
+        transition: none !important;
+        /* Remove hover lag */
+
+        /* D. Mobile Styling */
+        box-shadow: none !important;
+        border: 1px solid rgba(255, 255, 255, 0.15) !important;
+        background: rgba(17, 25, 40, 0.85) !important;
+    }
+
+    /* 3. ENSURE INNER CONTENT IS SOLID */
+    .project-content {
+        flex: 1 !important;
+        /* Fixes potential flexbox crushing */
+        height: auto !important;
+        opacity: 1 !important;
+    }
+
+    .projects-section.animate-projects .projects-grid {
+        animation: none !important;
+        /* Override the 0.2s delay from desktop */
+        opacity: 1 !important;
+    }
+
+    /* 5. REMOVE HOVER EFFECTS (Prevents sticky distortion on tap) */
+    .project-card:hover {
+        transform: none !important;
+        box-shadow: none !important;
+        border-color: rgba(255, 255, 255, 0.15) !important;
+    }
+
+    /* 5. OVERRIDE ANY "FADE-IN" CLASSES ON THESE CARDS */
+    .project-card.fade-in {
+        opacity: 1 !important;
+        transform: none !important;
+        animation: none !important;
+    }
+
+    /* 1. Shrink the Card Padding */
+    .contact-card,
+    .contact-form {
+        padding: 1.4rem !important;
+        /* Reduced from 2.5rem */
+        width: 100%;
+        /* Ensure it stays within parent */
+    }
+
+    /* 2. Shrink Contact Icons (Email, Phone, Map) */
+    .contact-icon {
+        width: 40px !important;
+        /* Reduced from 50px */
+        height: 40px !important;
+        /* Reduced from 50px */
+        font-size: 1.1rem !important;
+        flex-shrink: 0;
+        /* Prevents icon from getting squashed */
+    }
+
+    /* 3. Shrink Social Buttons (Github, LinkedIn, etc) */
+    .social-link {
+        width: 40px !important;
+        /* Reduced from 50px */
+        height: 40px !important;
+        /* Reduced from 50px */
+    }
+
+    .social-link svg {
+        width: 18px !important;
+        height: 18px !important;
+    }
+
+    /* 4. Fix Text Sizing & Long Email */
+    .contact-item {
+        gap: 0.8rem;
+        /* Reduce gap between icon and text */
+    }
+
+    .contact-item div p {
+        font-size: 0.85rem !important;
+        /* Smaller text */
+        /* CRITICAL FIX FOR EMAIL: */
+        word-break: break-all;
+        /* Forces long email to wrap on small screens */
+        line-height: 1.4;
+    }
+
+    .contact-card h3 {
+        font-size: 1.3rem;
+        /* Slightly smaller header */
+    }
+
+    /* 5. Tighter Form Inputs */
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+        padding: 0.8rem 1rem !important;
+        /* Less padding inside inputs */
+        font-size: 0.9rem !important;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+
+    @keyframes floatCard-Mobile {
+
+        0%,
+        100% {
+            transform: translateY(0) rotate(0deg);
+        }
+
+        50% {
+            transform: translateY(-10px) rotate(0deg);
+        }
+    }
+
+    .floating-card {
+        /* Reset absolute positioning so they snap to grid */
+        position: relative !important;
+        top: auto !important;
+        left: auto !important;
+        right: auto !important;
+        bottom: auto !important;
+        transform: none !important;
+        animation: none !important;
+        /* Stop floating */
+
+        /* Make them look like nice buttons */
+        background: rgba(17, 25, 40, 0.6);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 15px;
+        padding: 1rem !important;
+
+        /* Center content horizontally */
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+
+        box-shadow: none;
+        width: 100%;
+    }
+
+    .floating-card:hover {
+        background: rgba(233, 30, 99, 0.1);
+        box-shadow: 0 5px 20px rgba(233, 30, 99, 0.2);
+    }
+
+    .tech-icon {
+        width: 24px;
+        height: 24px;
+        margin: 0;
+        background: transparent;
+        border-radius: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--primary);
+    }
+
+    .tech-icon svg {
+        width: 20px;
+        height: 20px;
+    }
+
+    .floating-card p {
+        font-size: 0.9rem;
+        font-weight: 600;
+        margin: 0;
+        color: var(--light);
+    }
+
+    .floating-card h4 {
+        display: none;
+    }
+
+    .whatsapp-text {
+        font-size: 0.9rem !important;
+    }
+
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+        width: 10px;
+    }
+
+    ::-webkit-scrollbar-track {
+        background: var(--darker);
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: var(--gradient-1);
+        border-radius: 10px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+        background: var(--primary);
+    }
+
+    /* Loading Animation */
+    @keyframes shimmer {
+        0% {
+            background-position: -1000px 0;
+        }
+
+        100% {
+            background-position: 1000px 0;
+        }
+    }
+
+    .loading {
+        animation: shimmer 2s infinite linear;
+        background: linear-gradient(90deg, transparent, rgba(233, 30, 99, 0.1), transparent);
+        background-size: 1000px 100%;
+    }
+
+    footer {
+        padding: 2rem 1.5rem;
+        /* Reduced padding for mobile */
+    }
+
+    .footer-content {
+        flex-direction: column;
+        /* Stack columns vertically */
+        align-items: center;
+        /* Center align everything */
+        text-align: center !important;
+        /* Center text */
+        gap: 3rem;
+        /* Space between stacked sections */
+    }
+
+    .footer-brand {
+        flex: none;
+        /* Reset flex ratio */
+        width: 100%;
+        /* Full width */
+        min-width: auto;
+        /* Allow it to shrink */
+        padding-right: 0;
+        /* Remove right padding */
+    }
+
+    .footer-column {
+        flex: auto;
+        /* Reset flex ratio */
+        width: 100%;
+        /* Full width */
+        min-width: auto;
+    }
+
+    .footer-brand p {
+        /* CRITICAL FIX 2: Center the text block itself */
+        margin: 0.2rem auto 0 !important;
+        max-width: 400px;
+        /* Keep it readable */
+        color: var(--gray);
+        line-height: 1.6;
+    }
+
+    .footer-links-list {
+        align-items: center;
+        /* Center list items */
+    }
+
+    /* Fix hover effect on mobile to not slide sideways */
+    .footer-links-list a:hover {
+        transform: none;
+        color: var(--primary);
+    }
+
+    /* Stack the bottom bar copyright and credits */
+    .footer-bottom {
+        flex-direction: column;
+        gap: 1rem;
+        font-size: 0.8rem;
+        text-align: center;
+        margin-top: 3rem;
+        padding: 1rem 0 0 0;
+    }
+
+    .footer-heart {
+        font-size: 1.2rem;
+    }
+
+    .project-card,
+    .about-content,
+    .stat-card,
+    .contact-card,
+    .contact-form,
+    .nav-links,
+    header {
+        /* Reduce blur radius (easier for CPU) */
+        backdrop-filter: blur(5px) !important;
+        -webkit-backdrop-filter: blur(5px) !important;
+
+        /* Increase opacity slightly to compensate for less blur */
+        background: rgba(17, 25, 40, 0.85) !important;
+    }
+
+    /* 2. Pause background shapes on scroll to save resources */
+    .shape {
+        animation-play-state: paused;
+        /* Shapes won't move while you fight for scroll fps */
+        opacity: 0.2;
+        /* Lower opacity looks cleaner static */
+    }
+
+    /* 3. Disable heavy box-shadows on scroll */
+    .project-card,
+    .contact-card {
+        box-shadow: none !important;
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        /* Use border instead of shadow for depth */
+    }
+
+    /* Remove hardware acceleration on mobile to prevent memory overload */
+    .project-card,
+    .about-content,
+    .contact-card,
+    .stat-card,
+    header,
+    .hero-content {
+        will-change: auto !important;
+        transform: none !important;
+        /* Removes the 3D hack that might cause flickering */
+    }
+
+    /* 1. Fix the Vertical Line Position */
+    .timeline::before {
+        left: 30px;
+        /* Anchors line strictly to the left */
+    }
+
+    /* 2. Reset the Item Container */
+    .timeline-item {
+        /* Force simple row layout - NO reversing */
+        flex-direction: row !important;
+        /* Stop flexbox from squishing content (Fixes Distortion) */
+        align-items: flex-start;
+        width: 100%;
+        /* Remove any animations that might cause popping */
+        animation: none !important;
+        opacity: 1 !important;
+        transform: none !important;
+        visibility: visible !important;
+    }
+
+    /* 3. Reset the Content Card */
+    .timeline-content {
+        /* Push content clear of the dot */
+        margin-left: 4rem !important;
+        margin-right: 0 !important;
+        /* Ensure width is stable */
+        width: auto;
+        flex: 1;
+        /* Disable hover effects on mobile (causes jumping) */
+        transform: none !important;
+    }
+
+    /* 4. Fix the Dot Position */
+    /* Target BOTH odd and even items to align them identically */
+    .timeline-item:nth-child(odd) .timeline-content::before,
+    .timeline-item:nth-child(even) .timeline-content::before {
+        left: -65px !important;
+        /* Hard lock the dot position */
+        right: auto !important;
+        top: center;
+        /* Anchor to top (stable) instead of center (unstable) */
+        transform: none;
+        /* Remove centering transform */
+    }
+
+    .timeline-item:nth-child(odd),
+    .timeline-item:nth-child(even) {
+        animation-delay: 0s !important;
+        transition-delay: 0s !important;
+    }
+
+    /* --- RENDER ISOLATION --- */
+    .about-content,
+    .stat-card,
+    .project-card {
+        contain: content;
+        contain-intrinsic-size: 1px 400px;
+        /* Approximate height */
+        content-visibility: auto;
+    }
+
+    /* =========================================
+       1. SKILLS SECTION STABILIZATION
+       ========================================= */
+
+    /* Stop the container from fading in late */
+    .skills-container,
+    .skills-cloud {
+        opacity: 1 !important;
+        transform: none !important;
+        animation: none !important;
+        visibility: visible !important;
+
+    }
+
+    .skills-cloud {
+        /* 1. Switch from messy "Flex Wrap" to structured "Grid" */
+        display: grid !important;
+
+        /* 2. Create 2 Equal Columns (The "Card" Look) */
+        grid-template-columns: repeat(2, 1fr) !important;
+
+        /* 3. Clean Spacing */
+        gap: 15px !important;
+        padding: 0 2px !important;
+
+        /* Reset older styles */
+        justify-content: stretch !important;
+        opacity: 1 !important;
+        transform: none !important;
+        animation: none !important;
+    }
+
+    /* Fix the individual "Black Blocks" (Skill Tags) */
+    .skill-tag {
+        /* A. Instant Visibility */
+        opacity: 1 !important;
+        visibility: visible !important;
+
+        /* D. Paint Isolation */
+        /* Tells browser: "Paint this simple box instantly" */
+        contain: content;
+        width: 100% !important;
+        height: 60px !important;
+        /* Uniform height for alignment */
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        /* Center the text & icon */
+
+        /* C. Render Optimization (The "Black Block" Fix) */
+        /* Removing blur on tiny items saves massive GPU power */
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+        background: rgba(17, 25, 40, 0.95) !important;
+        /* Slightly clearer background */
+        border: 1px solid rgba(255, 255, 255, 0.15) !important;
+        border-radius: 22px !important;
+        /* Slightly boxier than pills */
+
+        /* C. Text Styling */
+        font-size: 0.9rem !important;
+        color: var(--primary) !important;
+        margin: 0 !important;
+        /* Remove random margins */
+
+        /* D. Performance */
+        box-shadow: none !important;
+        animation: none !important;
+        transition: none !important;
+        contain: content;
+    }
+
+    .skill-tag {
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4) !important;
+    }
+
+    .skill-tag img {
+        width: 25px !important;
+        height: 25px !important;
+        margin-right: 1px !important;
+    }
+
+    /* Disable hover jitter on touch */
+    .skill-tag:hover {
+        transform: none !important;
+        background: rgba(17, 25, 40, 0.9) !important;
+    }
+
+    /* =========================================
+       2. STATS CARDS STABILIZATION
+       ========================================= */
+
+    /* Force vertical stack instead of grid to prevent squashing */
+    .stats-grid {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 1.5rem !important;
+
+        /* Instant Visibilty */
+        opacity: 1 !important;
+        animation: none !important;
+    }
+
+    .stat-card {
+        /* A. Physics Reset */
+        width: 100% !important;
+        height: auto !important;
+        min-height: auto !important;
+
+        /* B. Visual Stability */
+        opacity: 1 !important;
+        visibility: visible !important;
+        transform: none !important;
+        animation: none !important;
+
+        /* C. Mobile Styling */
+        margin: 0 !important;
+        box-shadow: none !important;
+        border: 1px solid rgba(255, 255, 255, 0.15) !important;
+
+        /* D. Render Isolation */
+        contain: content;
+        padding-left: 2rem !important;
+        position: relative !important;
+    }
+
+    /* Remove the hover line animation on mobile (causes repaints) */
+    /* Restore the Side-Line (Static & Visible) */
+    /* This overrides the rule that usually hides ::before on mobile */
+    .stat-card::before {
+        content: '' !important;
+        display: block !important;
+        position: absolute !important;
+        left: 0 !important;
+        top: 0 !important;
+
+        /* Visible Specs */
+        width: 4px !important;
+        height: 100% !important;
+
+        /* Force Visible (No hover needed) */
+        transform: scaleY(1) !important;
+
+        /* Neon Color */
+        background: var(--gradient-1) !important;
+
+        /* Ensure it sits on top of background */
+        z-index: 1 !important;
+    }
+
+    .stat-card:hover {
+        transform: none !important;
+    }
+
+    /* =========================================
+       3. DARKER CARD THEME
+       ========================================= */
+    /* A. The "Stealth Dark" Look */
+    .about-content,
+    .stat-card,
+    .contact-card,
+    .timeline-content,
+    .project-card {
+        border: none !important;
+
+        /* 1. Darker Gradient (Deep Navy to almost Black) */
+        /* This removes the "Grey" look and keeps it Deep Blue */
+        background: linear-gradient(180deg,
+                rgba(20, 27, 45, 0.95) 0%,
+                rgba(10, 14, 30, 0.98) 100%) !important;
+
+        /* 2. Fainter Highlight */
+        /* Reduced opacity from 0.15 to 0.08 so it's barely there */
+        box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.08) !important;
+
+        border-radius: 16px !important;
+    }
+
+    /* C. Inputs (Darker background) */
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+        border: none !important;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.15) !important;
+        /* Make input background darker too */
+        background: rgba(0, 0, 0, 0.2) !important;
+        border-radius: 0 !important;
+    }
+
+    /* Certifications Mobile Fix */
+    .cert-card {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        padding: 1.5rem !important;
+        gap: 1rem !important;
+
+        /* Mobile Stabilization */
+        opacity: 1 !important;
+        visibility: visible !important;
+        transform: none !important;
+        animation: none !important;
+
+        /* Mobile Neon Border (Consistent with other cards) */
+        border: 2px solid transparent !important;
+        background-image: linear-gradient(rgba(20, 27, 45, 0.95), rgba(10, 14, 30, 0.98)), linear-gradient(135deg, #ffd700, #ff8c00) !important;
+        /* Gold Gradient */
+        background-origin: border-box !important;
+        background-clip: padding-box, border-box !important;
+    }
+
+    .cert-visual {
+        width: 100% !important;
+        height: 180px !important;
+        /* Bigger image on mobile */
+    }
+
+    .cert-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+
+    .cert-verify-btn {
+        width: 100%;
+        justify-content: center;
+    }
+
+}
+
+/* =========================================
+   CONTACT HERO - Creative Section
+   ========================================= */
+.contact-hero {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: center;
+    margin-bottom: 4rem;
+    padding: 3rem;
+    background: var(--card-bg);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 24px;
+    position: relative;
+    overflow: hidden;
+}
+
+.contact-hero::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle at 30% 50%, rgba(233, 30, 99, 0.05) 0%, transparent 50%);
+    pointer-events: none;
+}
+
+.contact-hero-text {
+    position: relative;
+    z-index: 1;
+}
+
+.contact-hero-heading {
+    font-size: 2.4rem;
+    font-weight: 800;
+    line-height: 1.2;
+    margin-bottom: 1.2rem;
+    color: var(--light);
+}
+
+.contact-hero-heading .gradient-text {
+    background: var(--gradient-1);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.contact-hero-desc {
+    font-size: 1.05rem;
+    color: var(--gray);
+    line-height: 1.8;
+    margin-bottom: 2rem;
+}
+
+.contact-hero-stats {
+    display: flex;
+    gap: 2rem;
+}
+
+.contact-stat {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+}
+
+.contact-stat-number {
+    font-size: 1.8rem;
+    font-weight: 800;
+    background: var(--gradient-1);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.contact-stat-label {
+    font-size: 0.8rem;
+    color: var(--gray);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.contact-hero-visual {
+    position: relative;
+    min-height: 400px;
+}
+
+.contact-hero-visual .hero-image-container {
+    position: relative;
+    width: 100%;
+    height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@media (max-width: 900px) {
+    .contact-hero {
+        grid-template-columns: 1fr;
+        padding: 2rem;
+    }
+
+    .contact-hero-heading {
+        font-size: 1.8rem;
+    }
+
+    .contact-hero-stats {
+        gap: 1.5rem;
+    }
+
+    .contact-hero-visual {
+        min-height: 350px;
+    }
+}
+
+@media (max-width: 600px) {
+    .contact-hero-stats {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .contact-hero-visual {
+        display: none;
+    }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--darker);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--gradient-1);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--primary);
+}
+
+/* --- HIDE CUSTOM CURSOR ON TOUCH DEVICES --- */
+@media (hover: none) and (pointer: coarse) {
+
+    /* Targets the JS-created cursor div */
+    .custom-cursor-element,
+    .cursor {
+        display: none !important;
+        visibility: hidden !important;
+        opacity: 0 !important;
+    }
+
+    /* Reset standard cursor just in case */
+    * {
+        cursor: auto !important;
+    }
+}
+
+
+/* --- PERFORMANCE OPTIMIZATIONS (GPU ACCELERATION) --- */
+
+/* 1. Promote heavy elements to their own layer */
+.project-card,
+.about-content,
+.contact-card,
+.stat-card,
+header,
+.hero-content {
+    /* Tells browser: "This will move/change, get ready" */
+    will-change: transform, opacity;
+    /* Hardware acceleration hacks */
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    perspective: 1000px;
+}
+
+/* 2. Optimize the Background Animation */
+.bg-animation::before {
+    /* Stop the browser from calculating blur on the background constantly */
+    will-change: transform;
+}
+
+/* 3. Fix Text Rendering during scroll */
+body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+}
+
+/* --- FINAL HEADER VISIBILITY FIX (MOBILE) --- */
+/* Placed at the bottom to override all previous rules */
+
+@media (max-width: 768px) {
+
+    /* 1. Target ID and Class to override the generic "header" rule */
+    #header,
+    header.scrolled,
+    header {
+        /* FORCE SOLID DARK COLOR */
+        /* This is your --darker color (#060818) at 99% opacity */
+        background-color: #060818 !important;
+        background: rgba(6, 8, 24, 0.99) !important;
+
+        /* Reset any blur that might be making it light */
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+
+        /* Add a strong bottom border so you see where header ends */
+        border-bottom: 1px solid rgba(255, 255, 255, 0.15) !important;
+
+        /* Add a shadow to separate it from content */
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.9) !important;
+    }
+
+    /* 2. Ensure the dropdown menu is also solid dark */
+    .nav-links {
+        background-color: #060818 !important;
+        background: rgba(6, 8, 24, 0.99) !important;
+    }
+}
+
+
+/* =========================================
+   MOBILE RESPONSIVENESS: TYPING EFFECT FIX
+   ========================================= */
+@media (max-width: 768px) {
+    .premium-subtitle-wrapper {
+        /* TOP | RIGHT | BOTTOM | LEFT */
+        /* Drastically reduced vertical space, added large right space for breathing room */
+        padding: 6px 20px 6px 15px !important;
+        gap: 10px !important;
+        max-width: 95vw;
+        align-items: center;
+    }
+
+    .premium-subtitle-wrapper .subtitle {
+        margin: 0 !important;
+        /* Force kills any rogue paragraph margins stretching the box up/down */
+        line-height: 1 !important;
+        /* Shrinks the invisible text height */
+        font-size: 0.82rem !important;
+        /* Scaled perfectly for all iPhones */
+    }
+
+    .tech-badge-inline {
+        padding: 5px 12px !important;
+        font-size: 0.65rem !important;
+        letter-spacing: 1px !important;
+        margin: 0 !important;
+    }
+
+    .tech-badge-inline::before {
+        width: 4px;
+        height: 4px;
+    }
+
+    .premium-cursor {
+        width: 6px;
+        height: 0.95rem;
+        margin-left: 6px;
+    }
+}
