@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // --- CERTIFICATE LIGHTBOX LOGIC ---
     // --- LIGHTBOX LOGIC (Certificates & Client Projects) ---
     // Select both certificate images and client project preview images
-    const expandableImages = document.querySelectorAll('.cert-visual img, .client-preview img');
+    const expandableImages = document.querySelectorAll('.cert-visual img, .client-preview img, img.gallery-item');
     const body = document.body;
 
     // 1. Create Lightbox Elements dynamically
