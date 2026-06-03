@@ -1,0 +1,35 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "PORTFOLIO-main/api/chat.py",
+      "use": "@vercel/python"
+    },
+    {
+      "src": "PORTFOLIO-main/**/*.html",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "PORTFOLIO-main/**/*.js",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "PORTFOLIO-main/**/*.css",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "PORTFOLIO-main/assets/**/*",
+      "use": "@vercel/static"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/chat",
+      "dest": "/PORTFOLIO-main/api/chat.py"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/PORTFOLIO-main/$1"
+    }
+  ]
+}
