@@ -1356,12 +1356,15 @@ footer {
         }
     }
 
-    .gallery-item {
+    .project-gallery {
+        height: 220px; /* Proper height for mobile */
+    }
 
-        /* Tell browser the shape of image immediately (16:9 ratio is standard) */
-        aspect-ratio: 16 / 9;
+    .gallery-item {
+        min-width: 100%;
+        height: 100%;
+        object-fit: contain;
         background-color: var(--darker);
-        /* Show dark box instead of white flash while loading */
     }
 
     .form-row {
