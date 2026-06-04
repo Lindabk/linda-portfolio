@@ -409,6 +409,55 @@ nav {
     z-index: 1001;
 }
 
+/* Language Switcher Styles */
+.lang-switch {
+    display: flex;
+    align-items: center;
+    gap: 0.2rem;
+    margin-right: 1.5rem;
+    z-index: 1002;
+}
+
+.lang-btn {
+    background: transparent;
+    border: none;
+    color: var(--gray);
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.9rem;
+    padding: 4px 8px;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    outline: none;
+    font-family: inherit;
+}
+
+.lang-btn:hover {
+    color: var(--primary);
+}
+
+.lang-btn.active {
+    color: var(--primary);
+    text-shadow: 0 0 8px rgba(255, 42, 133, 0.6);
+}
+
+.lang-divider {
+    color: rgba(255, 255, 255, 0.2);
+    font-size: 0.9rem;
+    user-select: none;
+}
+
+@media (max-width: 768px) {
+    .lang-switch {
+        margin-right: 1rem;
+    }
+    .lang-btn {
+        font-size: 0.8rem;
+        padding: 2px 4px;
+    }
+}
+
+
 .mobile-menu span {
     width: 30px;
     height: 3px;

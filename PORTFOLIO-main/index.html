@@ -79,7 +79,7 @@
     </script>
 </head>
 
-<body>
+<body data-title-key="title_home">
     <div id="preloader">
         <div class="loader-content">
             <div class="loader-logo">Linda</div>
@@ -99,15 +99,20 @@
         <nav>
             <a href="/" class="logo">Linda</a>
             <ul class="nav-links" id="navLinks">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
+                <li><a href="#home" data-translate="nav_home">Home</a></li>
+                <li><a href="#about" data-translate="nav_about">About</a></li>
                 <!-- NEW: Added Services Link Here -->
-                <li><a href="#services">Services</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#education">Education</a></li>
+                <li><a href="#services" data-translate="nav_services">Services</a></li>
+                <li><a href="#skills" data-translate="nav_skills">Skills</a></li>
+                <li><a href="#projects" data-translate="nav_projects">Projects</a></li>
+                <li><a href="#education" data-translate="nav_education">Education</a></li>
             </ul>
-            <button class="nav-cta" onclick="location.href='#contact'">Let's Talk</button>
+            <div class="lang-switch">
+                <button class="lang-btn" data-lang="en" aria-label="Switch to English">EN</button>
+                <span class="lang-divider">/</span>
+                <button class="lang-btn" data-lang="fr" aria-label="Switch to French">FR</button>
+            </div>
+            <button class="nav-cta" onclick="location.href='#contact'" data-translate="nav_cta">Let's Talk</button>
             <div class="mobile-menu" id="mobileMenu">
                 <span></span>
                 <span></span>
@@ -121,23 +126,22 @@
             <div class="hero-text">
                 <h1>Linda Boukhris</h1>
                 <div class="premium-subtitle-wrapper">
-                    <div class="tech-badge-inline">Expertise</div>
+                    <div class="tech-badge-inline" data-translate="hero_badge">Expertise</div>
                     <p class="subtitle">
                         <span id="premium-typing-text"></span><span class="premium-cursor"></span>
                     </p>
                 </div>
-                <p>Building smart, modern digital experiences through web technologies, AI, and creative development.
-                </p>
+                <p data-translate="hero_text">Building smart, modern digital experiences through web technologies, AI, and creative development.</p>
                 <div class="hero-buttons">
                     <a href="#projects" class="btn btn-primary">
-                        View My Work
+                        <span data-translate="btn_view_work">View My Work</span>
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                             stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <line x1="5" y1="12" x2="19" y2="12"></line>
                             <polyline points="12 5 19 12 12 19"></polyline>
                         </svg> </a>
                     <a href="assets/CV_Linda_Boukhris.pdf" class="btn btn-secondary" target="_blank">
-                        View CV
+                        <span data-translate="btn_view_cv">View CV</span>
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                             stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
@@ -163,7 +167,7 @@
     ========================================== -->
     <section id="about1" class="about1-section fade-in">
         <div class="about1-container">
-            <h2 class="about1-tagline">Developer by craft, curious by nature</h2>
+            <h2 class="about1-tagline" data-translate="about_tagline">Developer by craft, curious by nature</h2>
 
             <div class="about1-bento-grid">
                 <!-- Left: Profile Card -->
@@ -172,7 +176,7 @@
                         <img src="assets/profile2.png" alt="Linda Boukhris - Developer" loading="lazy" decoding="async">
                     </div>
                     <div class="about1-profile-bio">
-                        <p>I am a first-year Software Engineering student and hold a Licence in Computer Science. I am
+                        <p data-translate="about_bio">I am a first-year Software Engineering student and hold a Licence in Computer Science. I am
                             passionate about web development, AI, mobile apps, UI/UX, and building scalable solutions. I
                             am a curious, creative, and fast learner always exploring modern tech.</p>
                     </div>
@@ -217,7 +221,7 @@
             <!-- Bottom Row: Tool Stack + Skill Stack -->
             <div class="about1-bottom-row">
                 <div class="about1-toolstack-card">
-                    <h3 class="about1-card-title">Tool stack</h3>
+                    <h3 class="about1-card-title" data-translate="about_toolstack">Tool stack</h3>
                     <div class="about1-tool-icons">
                         <div class="about1-tool-icon" title="Python">
                             <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg"
@@ -239,11 +243,11 @@
                 </div>
 
                 <div class="about1-skillstack-card">
-                    <h3 class="about1-card-title">Skill stack</h3>
+                    <h3 class="about1-card-title" data-translate="about_skillstack">Skill stack</h3>
                     <div class="about1-skill-tags">
-                        <span class="about1-skill-tag">Full Stack Development</span>
-                        <span class="about1-skill-tag">AI Integration</span>
-                        <span class="about1-skill-tag">UI/UX Design</span>
+                        <span class="about1-skill-tag" data-translate="about_skill_fs">Full Stack Development</span>
+                        <span class="about1-skill-tag" data-translate="about_skill_ai">AI Integration</span>
+                        <span class="about1-skill-tag" data-translate="about_skill_ui">UI/UX Design</span>
                     </div>
                 </div>
             </div>
@@ -258,9 +262,9 @@
     ========================================== -->
     <section id="services" class="fade-in">
         <div class="section-header">
-            <div class="section-label">Areas of Expertise</div>
-            <h2 class="section-title">My Services</h2>
-            <p class="section-description">
+            <div class="section-label" data-translate="services_label">Areas of Expertise</div>
+            <h2 class="section-title" data-translate="services_title">My Services</h2>
+            <p class="section-description" data-translate="services_desc">
                 Building robust, scalable, and visually appealing applications across various domains.
             </p>
         </div>
@@ -273,8 +277,8 @@
                     <div class="enterprise-icon-box">
                         <span style="font-size: 2rem;">💻</span>
                     </div>
-                    <h3 class="enterprise-title">Full Stack Web Development</h3>
-                    <p class="enterprise-desc">Creating responsive, modern web applications from frontend interfaces to
+                    <h3 class="enterprise-title" data-translate="services_web_title">Full Stack Web Development</h3>
+                    <p class="enterprise-desc" data-translate="services_web_desc">Creating responsive, modern web applications from frontend interfaces to
                         robust backend architectures.</p>
                 </div>
             </div>
@@ -286,8 +290,8 @@
                     <div class="enterprise-icon-box">
                         <span style="font-size: 2rem;">📱</span>
                     </div>
-                    <h3 class="enterprise-title">Mobile Development</h3>
-                    <p class="enterprise-desc">Developing native Android applications with Kotlin to deliver seamless
+                    <h3 class="enterprise-title" data-translate="services_mobile_title">Mobile Development</h3>
+                    <p class="enterprise-desc" data-translate="services_mobile_desc">Developing native Android applications with Kotlin to deliver seamless
                         mobile user experiences.</p>
                 </div>
             </div>
@@ -299,8 +303,8 @@
                     <div class="enterprise-icon-box">
                         <span style="font-size: 2rem;">🗄️</span>
                     </div>
-                    <h3 class="enterprise-title">Database Management</h3>
-                    <p class="enterprise-desc">Designing and optimizing relational and NoSQL databases like PostgreSQL,
+                    <h3 class="enterprise-title" data-translate="services_db_title">Database Management</h3>
+                    <p class="enterprise-desc" data-translate="services_db_desc">Designing and optimizing relational and NoSQL databases like PostgreSQL,
                         MariaDB, and Firebase.</p>
                 </div>
             </div>
@@ -312,8 +316,8 @@
                     <div class="enterprise-icon-box">
                         <span style="font-size: 2rem;">🤖</span>
                     </div>
-                    <h3 class="enterprise-title">AI & Automation</h3>
-                    <p class="enterprise-desc">Integrating artificial intelligence models and building automated data
+                    <h3 class="enterprise-title" data-translate="services_ai_title">AI & Automation</h3>
+                    <p class="enterprise-desc" data-translate="services_ai_desc">Integrating artificial intelligence models and building automated data
                         processing pipelines.</p>
                 </div>
             </div>
@@ -325,8 +329,8 @@
                     <div class="enterprise-icon-box">
                         <span style="font-size: 2rem;">✨</span>
                     </div>
-                    <h3 class="enterprise-title">UI/UX Design</h3>
-                    <p class="enterprise-desc">Crafting beautiful, intuitive user interfaces and experiences with modern
+                    <h3 class="enterprise-title" data-translate="services_ui_title">UI/UX Design</h3>
+                    <p class="enterprise-desc" data-translate="services_ui_desc">Crafting beautiful, intuitive user interfaces and experiences with modern
                         design principles.</p>
                 </div>
             </div>
@@ -338,8 +342,8 @@
                     <div class="enterprise-icon-box">
                         <span style="font-size: 2rem;">🕶️</span>
                     </div>
-                    <h3 class="enterprise-title">AR/3D Development</h3>
-                    <p class="enterprise-desc">Building immersive augmented reality experiences and 3D environments
+                    <h3 class="enterprise-title" data-translate="services_ar_title">AR/3D Development</h3>
+                    <p class="enterprise-desc" data-translate="services_ar_desc">Building immersive augmented reality experiences and 3D environments
                         using Unity and Blender.</p>
                 </div>
             </div>
@@ -350,8 +354,8 @@
 
     <section id="skills" class="fade-in">
         <div class="section-header">
-            <h2 class="section-title">Skills & Statistics</h2>
-            <p class="section-description">
+            <h2 class="section-title" data-translate="skills_title">Skills & Statistics</h2>
+            <p class="section-description" data-translate="skills_desc">
                 A look at the Technologies I work with and my Professional metrics.
             </p>
         </div>
@@ -417,11 +421,11 @@
         <div class="stats-grid">
             <div class="stat-card">
                 <div class="stat-number">15+</div>
-                <div class="stat-label">Academic Projects</div>
+                <div class="stat-label" data-translate="skills_stat_projects">Academic Projects</div>
             </div>
             <div class="stat-card">
                 <div class="stat-number">10+</div>
-                <div class="stat-label">Technologies Mastered</div>
+                <div class="stat-label" data-translate="skills_stat_tech">Technologies Mastered</div>
             </div>
         </div>
 
@@ -429,8 +433,8 @@
 
     <section id="projects" class="fade-in">
         <div class="section-header">
-            <h2 class="section-title">Featured Projects</h2>
-            <p class="section-description" style="font-size: 1rem;">
+            <h2 class="section-title" data-translate="projects_title">Featured Projects</h2>
+            <p class="section-description" style="font-size: 1rem;" data-translate="projects_desc">
                 A curated showcase of academic and personal projects spanning web development, AI, networking, mobile,
                 data science, and augmented reality.
             </p>
@@ -439,7 +443,7 @@
         <!-- ── CATEGORY: Web Development ── -->
         <div class="carousel-block">
             <div class="projects-category-label">
-                <span class="category-pill">🌐 Web Development</span>
+                <span class="category-pill" data-translate="projects_cat_web">🌐 Web Development</span>
                 <div class="carousel-nav">
                     <button class="carousel-btn prev-btn" aria-label="Previous"><svg width="18" height="18"
                             viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
@@ -468,8 +472,8 @@
                             <div class="dots-container"></div>
                         </div>
                         <div class="project-content">
-                            <h3 class="project-title">Full Stack React + Django Website</h3>
-                            <p class="project-description">A complete full-stack web application pairing a responsive
+                            <h3 class="project-title" data-translate="project_react_django_title">Full Stack React + Django Website</h3>
+                            <p class="project-description" data-translate="project_react_django_desc">A complete full-stack web application pairing a responsive
                                 React frontend with a secure Django REST backend — supporting user authentication,
                                 dynamic data, and CRUD operations.</p>
                             <div class="project-tech"><span class="tech-badge">React</span><span
@@ -489,8 +493,8 @@
                             <div class="dots-container"></div>
                         </div>
                         <div class="project-content">
-                            <h3 class="project-title">Modern Gym Website</h3>
-                            <p class="project-description">
+                            <h3 class="project-title" data-translate="project_gym_title">Modern Gym Website</h3>
+                            <p class="project-description" data-translate="project_gym_desc">
                                 A modern and fully responsive gym website developed with PHP, featuring fitness
                                 services, membership plans, training programs, and an interactive user-friendly
                                 interface optimized for all devices.
@@ -518,8 +522,8 @@
                             <div class="dots-container"></div>
                         </div>
                         <div class="project-content">
-                            <h3 class="project-title">Car Rental Platform API</h3>
-                            <p class="project-description">A production-grade RESTful API for a car rental service
+                            <h3 class="project-title" data-translate="project_car_rent_title">Car Rental Platform API</h3>
+                            <p class="project-description" data-translate="project_car_rent_desc">A production-grade RESTful API for a car rental service
                                 covering vehicle inventory management, booking workflows, availability tracking, and
                                 secure user authentication.</p>
                             <div class="project-tech"><span class="tech-badge">Laravel</span><span
@@ -533,8 +537,8 @@
                             </div>
                         </div>
                         <div class="project-content">
-                            <h3 class="project-title">Weather Website</h3>
-                            <p class="project-description">A modern React application that integrates a live weather
+                            <h3 class="project-title" data-translate="project_weather_title">Weather Website</h3>
+                            <p class="project-description" data-translate="project_weather_desc">A modern React application that integrates a live weather
                                 REST API to deliver real-time temperature, humidity, and forecasts through a clean,
                                 intuitive interface.</p>
                             <div class="project-tech"><span class="tech-badge">React</span><span class="tech-badge">REST
@@ -548,8 +552,8 @@
                             </div>
                         </div>
                         <div class="project-content">
-                            <h3 class="project-title">Subscription Management Platform</h3>
-                            <p class="project-description">A full-featured platform for managing user subscriptions,
+                            <h3 class="project-title" data-translate="project_sub_title">Subscription Management Platform</h3>
+                            <p class="project-description" data-translate="project_sub_desc">A full-featured platform for managing user subscriptions,
                                 billing cycles, and role-based access control — powered by a Java backend and a reactive
                                 Angular frontend.</p>
                             <div class="project-tech"><span class="tech-badge">Angular</span><span
@@ -564,7 +568,7 @@
         <!-- ── CATEGORY: AI & Data ── -->
         <div class="carousel-block">
             <div class="projects-category-label">
-                <span class="category-pill">🤖 AI &amp; Data</span>
+                <span class="category-pill" data-translate="projects_cat_ai">🤖 AI &amp; Data</span>
                 <div class="carousel-nav">
                     <button class="carousel-btn prev-btn" aria-label="Previous"><svg width="18" height="18"
                             viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
@@ -594,8 +598,8 @@
                             <div class="dots-container"></div>
                         </div>
                         <div class="project-content">
-                            <h3 class="project-title">Smart AI Travel Platform</h3>
-                            <p class="project-description">An intelligent travel planning platform powered by an AI
+                            <h3 class="project-title" data-translate="project_travel_title">Smart AI Travel Platform</h3>
+                            <p class="project-description" data-translate="project_travel_desc">An intelligent travel planning platform powered by an AI
                                 chatbot and a computer vision system supporting face recognition and gesture-based
                                 camera control — delivering personalized trip recommendations.</p>
                             <div class="project-tech"><span class="tech-badge">Symfony</span><span
@@ -610,8 +614,8 @@
                             </div>
                         </div>
                         <div class="project-content">
-                            <h3 class="project-title">Data Cleaning &amp; Visualization</h3>
-                            <p class="project-description">An end-to-end data science pipeline that extracts actionable
+                            <h3 class="project-title" data-translate="project_data_title">Data Cleaning &amp; Visualization</h3>
+                            <p class="project-description" data-translate="project_data_desc">An end-to-end data science pipeline that extracts actionable
                                 insights from bike sales data through comprehensive data wrangling, cleaning, and
                                 expressive visual storytelling.</p>
                             <div class="project-tech"><span class="tech-badge">Python</span><span
@@ -626,8 +630,8 @@
                             </div>
                         </div>
                         <div class="project-content">
-                            <h3 class="project-title">Hadoop MapReduce Big Data</h3>
-                            <p class="project-description">A distributed big data processing pipeline leveraging Hadoop
+                            <h3 class="project-title" data-translate="project_hadoop_title">Hadoop MapReduce Big Data</h3>
+                            <p class="project-description" data-translate="project_hadoop_desc">A distributed big data processing pipeline leveraging Hadoop
                                 MapReduce to analyze massive datasets across a cluster, achieving optimized computation
                                 throughput and resource efficiency.</p>
                             <div class="project-tech"><span class="tech-badge">Hadoop</span><span
@@ -1277,7 +1281,7 @@
                     </div>
                     <div class="bot-info">
                         <span class="bot-name">Linda</span>
-                        <span class="bot-status">Online • </span>
+                        <span class="bot-status" data-translate="chat_status">Online • </span>
                     </div>
                 </div>
 
@@ -1291,7 +1295,7 @@
             </div>
 
             <div id="chat-messages" class="chat-messages scrollbar-neon">
-                <div class="message bot welcome-message">
+                <div class="message bot welcome-message" data-translate="chat_welcome">
                     Hello! 👋 I'm Linda's virtual assistant. Feel free to ask me about her **skills**, **projects**,
                     **education**, or how to **contact** her!
                 </div>
@@ -1303,7 +1307,7 @@
             </div>
 
             <div class="chat-input-area">
-                <input type="text" id="chat-input" placeholder="Type a message..." autocomplete="off">
+                <input type="text" id="chat-input" placeholder="Type a message..." data-translate="chat_placeholder" autocomplete="off">
                 <button id="send-btn" aria-label="Send message">
                     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                         stroke-linecap="round" stroke-linejoin="round">
@@ -1313,7 +1317,7 @@
                 </button>
             </div>
         </div>
-        <div id="chat-tooltip" class="chat-tooltip">Hi 👋 Need help? Ask me!</div>
+        <div id="chat-tooltip" class="chat-tooltip" data-translate="chat_tooltip">Hi 👋 Need help? Ask me!</div>
         <button id="chat-toggle-btn" aria-label="Open chat">
             <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
                 stroke-linecap="round" stroke-linejoin="round" class="chat-icon">
@@ -1322,6 +1326,7 @@
         </button>
     </div>
 
+    <script src="js/translate.js"></script>
     <script src="js/index.js"></script>
     <script src="js/carousel.js"></script>
     <script src="js/chatbot.js"></script>

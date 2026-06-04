@@ -190,10 +190,22 @@ document.addEventListener("DOMContentLoaded", () => {
         }, Promise.resolve());
     }
 
-    // 6. Rule-Based Chat Logic
+    // 6. Rule-Based Chat Logic (Bilingual: EN + FR)
+    function getActiveLanguage() {
+        return localStorage.getItem('preferredLanguage') || 'en';
+    }
+
     function getBotResponse(input) {
         const lowerInput = input.toLowerCase();
-        
+        const lang = getActiveLanguage();
+
+        if (lang === 'fr') {
+            return getBotResponseFR(lowerInput);
+        }
+        return getBotResponseEN(lowerInput);
+    }
+
+    function getBotResponseEN(lowerInput) {
         if (lowerInput.includes('hello') || lowerInput.includes('hi') || lowerInput.includes('hey')) {
             return "Hello! 👋 I'm Linda's virtual assistant. You can ask me about her **skills**, **projects**, **education**, or how to **contact** her.";
         }
@@ -219,6 +231,34 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         return "I'm not exactly sure what you mean. 😅 Try asking about Linda's **skills**, **projects**, **education**, or how to **contact** her. Or you can email her directly at lindaboukhris01@gmail.com!";
+    }
+
+    function getBotResponseFR(lowerInput) {
+        if (lowerInput.includes('bonjour') || lowerInput.includes('salut') || lowerInput.includes('coucou') || lowerInput.includes('hello') || lowerInput.includes('hi')) {
+            return "Bonjour ! 👋 Je suis l'assistant virtuel de Linda. Vous pouvez me poser des questions sur ses **compétences**, ses **projets**, sa **formation** ou comment la **contacter**.";
+        }
+
+        if (lowerInput.includes('compétence') || lowerInput.includes('competence') || lowerInput.includes('skill') || lowerInput.includes('technolog') || lowerInput.includes('stack') || lowerInput.includes('outil')) {
+            return "Les compétences principales de Linda incluent :\n• **Langages :** Python, JavaScript, HTML5, CSS3, SQL\n• **IA/Données :** LangChain, OpenCV, Pandas, Hadoop\n• **Web :** React, Angular, Symfony, Laravel\n• **Réseaux :** Cisco Packet Tracer, Routage, VLANs\n\nConsultez la section **Compétences** pour plus de détails !";
+        }
+
+        if (lowerInput.includes('projet') || lowerInput.includes('travail') || lowerInput.includes('portfolio') || lowerInput.includes('réalisation') || lowerInput.includes('realisation')) {
+            return "Linda a réalisé plusieurs projets impressionnants, notamment :\n• **Plateforme de voyage IA intelligente** (Vision par ordinateur & IA)\n• **Infrastructure réseau d'entreprise** (Cisco & Haute disponibilité)\n• **Site météo** (React)\n• **Plateforme de gestion des abonnements** (Angular & Java)\n\nVous pouvez tous les voir dans la section **Projets phares** !";
+        }
+
+        if (lowerInput.includes('formation') || lowerInput.includes('étude') || lowerInput.includes('etude') || lowerInput.includes('université') || lowerInput.includes('universite') || lowerInput.includes('diplôme') || lowerInput.includes('diplome') || lowerInput.includes('education')) {
+            return "Linda poursuit actuellement ses **études d'ingénieur en Génie Logiciel** à l'École Supérieure Privée d'Ingénierie et de Technologie de Monastir (2026 - Présent).\nElle est également titulaire d'une **Licence en Informatique** de l'Institut Supérieur d'Informatique et de Multimédia de Gabès (2022 - 2025).";
+        }
+
+        if (lowerInput.includes('contact') || lowerInput.includes('email') || lowerInput.includes('mail') || lowerInput.includes('joindre') || lowerInput.includes('whatsapp') || lowerInput.includes('embauche')) {
+            return "Vous pouvez contacter Linda via :\n• **Email :** lindaboukhris01@gmail.com\n• **WhatsApp :** [Lui écrire](https://wa.me/923260440692)\n• **LinkedIn :** [Se connecter](https://linkedin.com/in/Linda%20Boukhris)\n\nOu utilisez le formulaire de contact en bas de la page !";
+        }
+
+        if (lowerInput.includes('qui es-tu') || lowerInput.includes('qui es tu') || lowerInput.includes('tu es quoi') || lowerInput.includes('bot') || lowerInput.includes('assistant')) {
+            return "Je suis l'assistant virtuel de Linda ! 🤖 Je suis là pour vous aider à trouver rapidement des informations sur son portfolio.";
+        }
+
+        return "Je ne suis pas sûr de comprendre votre question. 😅 Essayez de me poser des questions sur les **compétences**, les **projets**, la **formation** de Linda ou comment la **contacter**. Vous pouvez aussi lui écrire directement à lindaboukhris01@gmail.com !";
     }
 
     function sendMessage() {
