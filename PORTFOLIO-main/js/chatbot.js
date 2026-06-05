@@ -223,7 +223,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
         
         if (lowerInput.includes('contact') || lowerInput.includes('email') || lowerInput.includes('hire') || lowerInput.includes('reach') || lowerInput.includes('whatsapp')) {
-            return "You can reach Linda via:\n• **Email:** lindaboukhris01@gmail.com\n• **WhatsApp:** [Message Her](https://wa.me/923260440692)\n• **LinkedIn:** [Connect on LinkedIn](https://linkedin.com/in/Linda%20Boukhris)\n\nOr use the contact form at the bottom of the page!";
+            return "You can reach Linda via:\n• **Email:** lindaboukhris01@gmail.com\n• **WhatsApp:** [Message Her](https://wa.me/21650891089)\n• **LinkedIn:** [Connect on LinkedIn](https://www.linkedin.com/in/linda-boukhris-b01a39277)\n\nOr use the contact form at the bottom of the page!";
         }
         
         if (lowerInput.includes('who are you') || lowerInput.includes('what are you') || lowerInput.includes('bot')) {
@@ -251,7 +251,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         if (lowerInput.includes('contact') || lowerInput.includes('email') || lowerInput.includes('mail') || lowerInput.includes('joindre') || lowerInput.includes('whatsapp') || lowerInput.includes('embauche')) {
-            return "Vous pouvez contacter Linda via :\n• **Email :** lindaboukhris01@gmail.com\n• **WhatsApp :** [Lui écrire](https://wa.me/923260440692)\n• **LinkedIn :** [Se connecter](https://linkedin.com/in/Linda%20Boukhris)\n\nOu utilisez le formulaire de contact en bas de la page !";
+            return "Vous pouvez contacter Linda via :\n• **Email :** lindaboukhris01@gmail.com\n• **WhatsApp :** [Lui écrire](https://wa.me/21650891089)\n• **LinkedIn :** [Se connecter](https://www.linkedin.com/in/linda-boukhris-b01a39277)\n\nOu utilisez le formulaire de contact en bas de la page !";
         }
 
         if (lowerInput.includes('qui es-tu') || lowerInput.includes('qui es tu') || lowerInput.includes('tu es quoi') || lowerInput.includes('bot') || lowerInput.includes('assistant')) {

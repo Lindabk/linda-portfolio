@@ -195,8 +195,8 @@ in the Software without restriction...
 ## 📬 Contact
 
 * Website: [https://LindaBoukhris.online](https://LindaBoukhris.online)
-* GitHub: [https://github.com/ LindaBoukhris](https://github.com/LindaBoukhris)
-* LinkedIn: `https://linkedin.com/in/ch-linda-boukhris`
+* GitHub: [https://github.com/ LindaBoukhris](https://github.com/linda011)
+* LinkedIn: `https://www.linkedin.com/in/linda-boukhris-b01a39277`
 * Instagram: `https://instagram.com/linda_boukhris`
 * Email: `contact@LindaBoukhris.online`
 

@@ -59,9 +59,9 @@ class handler(BaseHTTPRequestHandler):
                 2. **Contact & Socials:**
                 - 📧 Email: contact@LindaBoukhris.online
                 - 🌐 Website: https://LindaBoukhris.online
-                - 🐙 GitHub: https://github.com/LindaBoukhris
-                - 💼 LinkedIn: https://linkedin.com/in/ch-LindaBoukhris
-                - 💬 WhatsApp: https://wa.me/923260440692
+                - 🐙 GitHub: https://github.com/linda011
+                - 💼 LinkedIn: https://www.linkedin.com/in/linda-boukhris-b01a39277
+                - 💬 WhatsApp: https://wa.me/21650891089
                 - 📸 Instagram: https://www.instagram.com/LindaBoukhris/
                 - 👻 Snapchat: https://www.snapchat.com/add/its.choudari
 
@@ -73,40 +73,40 @@ class handler(BaseHTTPRequestHandler):
 
                 4. **Project Archive (Links & Details):**
                 - **AutoMARK - AI Grading System:** Automated MCQ checking using Python/Pandas.
-                    [Live: https://automark-ai.streamlit.app/] | [Repo: https://github.com/LindaBoukhris/AutoMARK-v1.0]
+                    [Live: https://automark-ai.streamlit.app/] | [Repo: https://github.com/linda011/AutoMARK-v1.0]
                 
                 - **FileIQ - Document Bot:** RAG-based PDF chat assistant using LangChain.
-                    [Live: https://documentiq.streamlit.app/] | [Repo: https://github.com/LindaBoukhris/FileIQ_Document-InteLLigence-BOT]
+                    [Live: https://documentiq.streamlit.app/] | [Repo: https://github.com/linda011/FileIQ_Document-InteLLigence-BOT]
                 
                 - **PizzAi - Order Bot:** AI chatbot for ordering pizza (LLM memory logic).
-                    [Live: https://pizza-ai.streamlit.app/] | [Repo: https://github.com/LindaBoukhris/PizzAi-Bot]
+                    [Live: https://pizza-ai.streamlit.app/] | [Repo: https://github.com/linda011/PizzAi-Bot]
                 
                 - **Oops my GPA:** GPA/CGPA calculator for students.
-                    [Live: https://oopsmygpa.streamlit.app/] | [Repo: https://github.com/LindaBoukhris/Oops_my_GPA]
+                    [Live: https://oopsmygpa.streamlit.app/] | [Repo: https://github.com/linda011/Oops_my_GPA]
                 
                 - **YSDS Chatbot:** Educational assistant for YSDS institute.
-                    [Live: https://ysds-chatbot.streamlit.app/] | [Repo: https://github.com/LindaBoukhris/ysds-chatbot]
+                    [Live: https://ysds-chatbot.streamlit.app/] | [Repo: https://github.com/linda011/ysds-chatbot]
                 
                 - **APNA Restaurant POS:** Digital invoicing and order management system.
-                    [Live: https://apna-resturant.streamlit.app/] | [Repo: https://github.com/LindaBoukhris/APNA_Resturant]
+                    [Live: https://apna-resturant.streamlit.app/] | [Repo: https://github.com/linda011/APNA_Resturant]
 
                 - **HealthMate App:** Patient health tracking and analysis.
-                    [Live: https://patient-health-tracker.streamlit.app/] | [Repo: https://github.com/LindaBoukhris/HealthApp]
+                    [Live: https://patient-health-tracker.streamlit.app/] | [Repo: https://github.com/linda011/HealthApp]
                     
                 - **Fresh-Mart POS:** Grocery store inventory and billing system.
-                    [Live: https://freshmart-pos.streamlit.app/] | [Repo: https://github.com/LindaBoukhris/Fresh-Mart_POS_system]
+                    [Live: https://freshmart-pos.streamlit.app/] | [Repo: https://github.com/linda011/Fresh-Mart_POS_system]
                     
                 - **Banking System:** Secure banking simulation with OOP/JSON.
-                    [Live: https://banking-management.streamlit.app/] | [Repo: https://github.com/LindaBoukhris/Banking_mangement_system]
+                    [Live: https://banking-management.streamlit.app/] | [Repo: https://github.com/linda011/Banking_mangement_system]
 
                 - **Netflix Clone:** Frontend UI replica.
-                    [Repo: https://github.com/LindaBoukhris/NETFLIX_clone]
+                    [Repo: https://github.com/linda011/NETFLIX_clone]
 
                 - **Groq LLM Chatbot:** High-performance AI assistant using Streamlit and LLaMA 3 via Groq API.
-                    [Live: https://Linda-ai.streamlit.app/] | [Repo: https://github.com/LindaBoukhris/llama3-streamlit-chatbot]
+                    [Live: https://Linda-ai.streamlit.app/] | [Repo: https://github.com/linda011/llama3-streamlit-chatbot]
 
                 - **Amazon Clone:** Responsive frontend replica of the Amazon e-commerce interface.
-                    [Repo: https://github.com/LindaBoukhris/AMAZON_clone]
+                    [Repo: https://github.com/linda011/AMAZON_clone]
                 ---
 
                 INSTRUCTIONS FOR RESPONSE:
@@ -135,7 +135,7 @@ class handler(BaseHTTPRequestHandler):
                 **RESEARCH PROTOCOL (CRITICAL):**
 
                 If the user asks a question about Linda or his work that is **NOT** explicitly covered in this prompt:
-                1.  You are authorized to **simulate a search** or infer details by cross-referencing his **Website** (https://LindaBoukhris.online), **GitHub** (https://github.com/LindaBoukhris), and **LinkedIn** (https://linkedin.com/in/ch-LindaBoukhris).
+                1.  You are authorized to **simulate a search** or infer details by cross-referencing his **Website** (https://LindaBoukhris.online), **GitHub** (https://github.com/linda011), and **LinkedIn** (https://www.linkedin.com/in/linda-boukhris-b01a39277).
                 2.  Use the context of his role (Python Dev/RAG Specialist) to generate a reasonable, highly probable response based on industry standards for someone with his skill set.
                 3.  Always clarify if you are making an educated inference (e.g., "Based on his GitHub activity...").
                 4.  If you cannot find any relevant information, default to the fallback response above.
